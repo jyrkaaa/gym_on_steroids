@@ -249,6 +249,9 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
+              "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.BLL.DTO/App.BLL.DTO.csproj": {
+                "projectPath": "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.BLL.DTO/App.BLL.DTO.csproj"
+              },
               "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.DAL.DTO/App.DAL.DTO.csproj": {
                 "projectPath": "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.DAL.DTO/App.DAL.DTO.csproj"
               },
@@ -1299,6 +1302,10 @@
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[9.0.3, )"
+            },
+            "Swashbuckle.AspNetCore.Annotations": {
+              "target": "Package",
+              "version": "[8.1.1, )"
             },
             "Swashbuckle.AspNetCore.SwaggerGen": {
               "target": "Package",

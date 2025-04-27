@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using App.DAL.DTO;
 using Base.Contracts;
 
 namespace App.BLL.DTO;

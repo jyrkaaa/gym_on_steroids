@@ -10,5 +10,5 @@ public class ExerciseCategory : IDomainId
     [MaxLength(255, ErrorMessageResourceType = typeof(Base.Resources.Common), ErrorMessageResourceName = "MaxLength")]
     public string Name { get; set; } = default!;
 
-    public ICollection<Exercise>? Exercises { get; set; }
+    public ICollection<Exercise?>? Exercises { get; set; }
 }

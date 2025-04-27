@@ -1386,3 +1386,4 @@
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/WebApp/bin/Debug/net9.0/Base.BLL.pdb
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/WebApp/bin/Debug/net9.0/WebApp.xml
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/WebApp/obj/Debug/net9.0/WebApp.xml
+/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/WebApp/bin/Debug/net9.0/Swashbuckle.AspNetCore.Annotations.dll

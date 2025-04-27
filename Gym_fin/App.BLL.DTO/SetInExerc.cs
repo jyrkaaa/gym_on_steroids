@@ -1,8 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Base.Contracts;
-using Base.Domain;
 
-namespace App.DAL.DTO;
+namespace App.BLL.DTO;
 
 public class SetInExerc : IDomainId
 {

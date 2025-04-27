@@ -1,9 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using App.BLL.DTO;
 using Base.Contracts;
-using Base.Domain;
 
-namespace App.DAL.DTO;
+namespace App.BLL.DTO;
 
 public class ExerTarget : IDomainId
 {

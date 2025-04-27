@@ -19,6 +19,35 @@
             <returns>List of Exercise DTOs.</returns>
             <response code="200">Returns the list of exercises</response>
             <response code="404">If no exercises are found</response>
+            <response code="401">Unauthorized Access</response>
+        </member>
+        <member name="M:WebApp.ApiControllers.ExerciseController.GetExercise(System.Guid)">
+            <summary>
+            Gets exercise for the logged-in user with the provided id (GUID).
+            </summary>
+            <returns>Exercise DTO.</returns>
+            <response code="200">An exercises</response>
+            <response code="404">If no exercises are found</response>
+            <response code="401">Unauthorized Access</response>
+        </member>
+        <member name="M:WebApp.ApiControllers.ExerciseController.PutExercise(System.Guid,App.BLL.DTO.Exercise)">
+            <summary>
+            Edits exercise for the logged-in user with the provided id (GUID).
+            </summary>
+            <returns>Exercise DTO.</returns>
+            <response code="200">An exercises</response>
+            <response code="404">If no exercises are found</response>
+            <response code="401">Unauthorized Access</response>
+        </member>
+        <member name="M:WebApp.ApiControllers.ExerciseController.GetExercisesByCategory(System.Guid)">
+            <summary>
+            Gets all exercises by category for the logged-in user.
+            </summary>
+            <param name="categoryId">The ID of the exercise category.</param>
+            <returns>List of exercises that belong to the given category.</returns>
+            <response code="200">Returns the list of exercises</response>
+            <response code="404">If no exercises are found</response>
+            <response code="401">Unauthorized Access</response>
         </member>
         <member name="M:WebApp.ApiControllers.Identity.AccountController.RefreshToken(System.String)">
             <summary>

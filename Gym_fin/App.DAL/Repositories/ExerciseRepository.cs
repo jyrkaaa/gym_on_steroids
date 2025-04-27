@@ -7,14 +7,14 @@ using Exercise = App.DAL.DTO.Exercise;
 
 namespace App.DAL.Repositories;
 
-public class ExerciseRepository : BaseRepository<App.DAL.DTO.Exercise ,App.Domain.EF.Exercise> , IExerciseRepository
+public class ExerciseRepository : BaseRepository<DTO.Exercise ,App.Domain.EF.Exercise> , IExerciseRepository
 {
     public ExerciseRepository(AppDbContext repositoryDBContext) : base(repositoryDBContext, new ExerciseUOWMapper())
     {
     }
 
 
-    public override async Task<IEnumerable<App.DAL.DTO.Exercise>> AllAsync(Guid userId = default)
+    public override async Task<IEnumerable<DTO.Exercise>> AllAsync(Guid userId = default)
     {
         var query = GetQuery(userId);
         query = query
@@ -26,7 +26,7 @@ public class ExerciseRepository : BaseRepository<App.DAL.DTO.Exercise ,App.Domai
         return (await query.ToListAsync()).Select(e => UOWMapper.Map(e)!);
     }
 
-    public override IEnumerable<App.DAL.DTO.Exercise> All(Guid userId = default)
+    public override IEnumerable<DTO.Exercise> All(Guid userId = default)
     {
         var query = GetQuery(userId);
         query = query
@@ -38,7 +38,7 @@ public class ExerciseRepository : BaseRepository<App.DAL.DTO.Exercise ,App.Domai
         return query.ToList().Select(e => UOWMapper.Map(e)!);
     }
 
-    public override async Task<Exercise?> FindAsync( Guid id, Guid userId = default!)
+    public override async Task<DTO.Exercise?> FindAsync( Guid id, Guid userId = default!)
     {
         var entity = await GetQuery(userId)
             .Include(e => e.ExerciseCategory)
@@ -50,7 +50,7 @@ public class ExerciseRepository : BaseRepository<App.DAL.DTO.Exercise ,App.Domai
         return UOWMapper.Map(entity);
     }
 
-    public override App.DAL.DTO.Exercise? Find(Guid id, Guid userId = default)
+    public override DTO.Exercise? Find(Guid id, Guid userId = default)
     {
         var entity = GetQuery(userId)
             .Include(e => e.ExerciseCategory)
@@ -62,22 +62,36 @@ public class ExerciseRepository : BaseRepository<App.DAL.DTO.Exercise ,App.Domai
         return UOWMapper.Map(entity);
     }
 
-    public override void Add(App.DAL.DTO.Exercise entity, Guid userId = default)
+    public override void Add(DTO.Exercise entity, Guid userId = default)
     {
         var domainEntity = UOWMapper.Map(entity)!;
         RepositoryDbSet.Add(domainEntity);
     }
 
-    public override App.DAL.DTO.Exercise Update(App.DAL.DTO.Exercise entity)
+    public override DTO.Exercise Update(DTO.Exercise entity)
     {
         var domainEntity = UOWMapper.Map(entity)!;
         RepositoryDbSet.Update(domainEntity);
         return entity;
     }
 
-    public override void Remove(App.DAL.DTO.Exercise entity, Guid userId = default)
+    public override void Remove(DTO.Exercise entity, Guid userId = default)
     {
         var domainEntity = UOWMapper.Map(entity)!;
         RepositoryDbSet.Remove(domainEntity);
     }
+
+    public async Task<IEnumerable<DTO.Exercise>> GetAllByCategoryIdAsync(Guid categoryId, Guid userId)
+    {
+        var query = GetQuery(userId)
+            .Include(e => e.ExerciseCategory)
+            .Include(e => e.ExerTarget)
+            .Include(e => e.ExerGuide)
+            .Include(e => e.ExerInWorkouts)
+            .Where(e => e.ExerciseCategoryId == categoryId);
+        var entities = await query.ToListAsync();
+        return entities.Select(e => UOWMapper.Map(e))!;
+    }
+    
 }
+

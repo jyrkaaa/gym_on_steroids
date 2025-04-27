@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "AntlYBGskAY=",
+  "dgSpecHash": "QVD2ycSCMi4=",
   "success": true,
   "projectFilePath": "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/WebApp/WebApp.csproj",
   "expectedPackageFiles": [
@@ -146,6 +146,7 @@
     "/Users/jurgenkuusik/.nuget/packages/sqlitepclraw.core/2.1.10/sqlitepclraw.core.2.1.10.nupkg.sha512",
     "/Users/jurgenkuusik/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.1.10/sqlitepclraw.lib.e_sqlite3.2.1.10.nupkg.sha512",
     "/Users/jurgenkuusik/.nuget/packages/sqlitepclraw.provider.e_sqlite3/2.1.10/sqlitepclraw.provider.e_sqlite3.2.1.10.nupkg.sha512",
+    "/Users/jurgenkuusik/.nuget/packages/swashbuckle.aspnetcore.annotations/8.1.1/swashbuckle.aspnetcore.annotations.8.1.1.nupkg.sha512",
     "/Users/jurgenkuusik/.nuget/packages/swashbuckle.aspnetcore.swagger/8.1.1/swashbuckle.aspnetcore.swagger.8.1.1.nupkg.sha512",
     "/Users/jurgenkuusik/.nuget/packages/swashbuckle.aspnetcore.swaggergen/8.1.1/swashbuckle.aspnetcore.swaggergen.8.1.1.nupkg.sha512",
     "/Users/jurgenkuusik/.nuget/packages/swashbuckle.aspnetcore.swaggerui/8.1.1/swashbuckle.aspnetcore.swaggerui.8.1.1.nupkg.sha512",

@@ -237,8 +237,23 @@
           }
         }
       },
+      "App.BLL.DTO/1.0.0": {
+        "dependencies": {
+          "App.Resources": "1.0.0",
+          "Base.Contracts": "1.0.0",
+          "Base.Domain": "1.0.0",
+          "Base.Resources": "1.0.0"
+        },
+        "runtime": {
+          "App.BLL.DTO.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "App.DAL.Contracts/1.0.0": {
         "dependencies": {
+          "App.BLL.DTO": "1.0.0",
           "App.DAL.DTO": "1.0.0",
           "App.Domain.EF": "1.0.0",
           "Base.Contracts": "1.0.0",
@@ -490,6 +505,11 @@
       "sha512": "sha512-1A6HpMPbzK+quxdtug1aDHI4BSRTgpi7OaDt8WQh7SFJd2sSQ0nNTZ7sYrwyxVf4AdKdN7XJL9tpiiJjRUaa4g==",
       "path": "npgsql.entityframeworkcore.postgresql/9.0.3",
       "hashPath": "npgsql.entityframeworkcore.postgresql.9.0.3.nupkg.sha512"
+    },
+    "App.BLL.DTO/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "App.DAL.Contracts/1.0.0": {
       "type": "project",

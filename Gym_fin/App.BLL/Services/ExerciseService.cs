@@ -4,8 +4,6 @@ using App.BLL.Contracts;
 using App.DAL.Contracts;
 using App.DAL.DTO;
 using Base.BLL.Contracts;
-using Base.DAL.Contracts;
-using App.DAL.DTO;
 
 
 namespace App.BLL.Services;
@@ -16,5 +14,12 @@ public class ExerciseService : BaseService<App.BLL.DTO.Exercise, App.DAL.DTO.Exe
         IAppUOW serviceUOW,
         IBLLMapper<DTO.Exercise, Exercise> bllMapper) : base(serviceUOW, serviceUOW.ExerciseRepository, bllMapper)
     {
+        
+    }
+    public async Task<IEnumerable<App.DAL.DTO.Exercise>> GetAllByCategoryIdAsync(Guid categoryId, Guid userId)
+    {
+        var exercises = await ServiceRepository.GetAllByCategoryIdAsync(categoryId, userId);
+
+        return exercises;
     }
 }

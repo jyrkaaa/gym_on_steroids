@@ -28,3 +28,5 @@
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.DAL.Contracts/obj/Debug/net9.0/refint/App.DAL.Contracts.dll
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.DAL.Contracts/obj/Debug/net9.0/App.DAL.Contracts.pdb
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.DAL.Contracts/obj/Debug/net9.0/ref/App.DAL.Contracts.dll
+/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.DAL.Contracts/bin/Debug/net9.0/App.BLL.DTO.dll
+/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.DAL.Contracts/bin/Debug/net9.0/App.BLL.DTO.pdb

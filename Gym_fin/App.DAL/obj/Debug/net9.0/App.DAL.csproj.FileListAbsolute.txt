@@ -64,3 +64,5 @@
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.DAL/obj/Debug/net9.0/refint/App.DAL.dll
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.DAL/obj/Debug/net9.0/App.DAL.pdb
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.DAL/obj/Debug/net9.0/ref/App.DAL.dll
+/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.DAL/bin/Debug/net9.0/App.BLL.DTO.dll
+/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.DAL/bin/Debug/net9.0/App.BLL.DTO.pdb

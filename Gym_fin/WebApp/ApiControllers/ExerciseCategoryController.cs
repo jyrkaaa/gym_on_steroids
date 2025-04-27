@@ -49,7 +49,7 @@ namespace WebApp.ApiControllers
             {
                 Id = x.Id,
                 Name = x.Name,
-                Exercises = x.Exercises.ToList() ?? null,
+                Exercises = x.Exercises?.Select(p => p!.Id).ToList() ?? new List<Guid>(),
                 
             });
             return res;
@@ -66,12 +66,14 @@ namespace WebApp.ApiControllers
                 return NotFound();
             }
 
+            var exercises = exercise!.Exercises?.ToList().Select(p => p!.Id).ToList() ?? null;
             return new ExerciseCategory()
             {
                 Id = exercise.Id,
-                Name = exercise.Name,
-                Exercises = exercise.Exercises.ToList() ?? null,
+                Name = exercise.Name, 
+                Exercises = exercises,
             };
+            
         }
 
         // PUT: api/ExerciseCategory/5

@@ -127,7 +127,8 @@ public class BaseRepository<TDalEntity, TDomainEntity, TKey> : IBaseRepository<T
 
     public bool Exists(Guid id, TKey? userId = default)
     {
-        throw new NotImplementedException();
+        var query = GetQuery(userId);
+        return query.Any(e => e.Id.Equals(id));
     }
 
     public Task<bool> ExistsAsync(Guid id, TKey? userId = default)
