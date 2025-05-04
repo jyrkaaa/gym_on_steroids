@@ -471,8 +471,14 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
+              "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.BLL.DTO/App.BLL.DTO.csproj": {
+                "projectPath": "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.BLL.DTO/App.BLL.DTO.csproj"
+              },
               "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.Resources/App.Resources.csproj": {
                 "projectPath": "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.Resources/App.Resources.csproj"
+              },
+              "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Base.BLL.Contracts/Base.BLL.Contracts.csproj": {
+                "projectPath": "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Base.BLL.Contracts/Base.BLL.Contracts.csproj"
               },
               "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Base.Contracts/Base.Contracts.csproj": {
                 "projectPath": "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Base.Contracts/Base.Contracts.csproj"

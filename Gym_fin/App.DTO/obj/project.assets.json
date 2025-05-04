@@ -2,6 +2,22 @@
   "version": 3,
   "targets": {
     "net9.0": {
+      "App.BLL.DTO/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "App.Resources": "1.0.0",
+          "Base.Contracts": "1.0.0",
+          "Base.Domain": "1.0.0",
+          "Base.Resources": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/App.BLL.DTO.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/App.BLL.DTO.dll": {}
+        }
+      },
       "App.Resources/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
@@ -12,6 +28,20 @@
           "bin/placeholder/App.Resources.dll": {}
         }
       },
+      "Base.BLL.Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "Base.Contracts": "1.0.0",
+          "Base.DAL.Contracts": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Base.BLL.Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Base.BLL.Contracts.dll": {}
+        }
+      },
       "Base.Contracts/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
@@ -20,6 +50,32 @@
         },
         "runtime": {
           "bin/placeholder/Base.Contracts.dll": {}
+        }
+      },
+      "Base.DAL.Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "Base.Contracts": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Base.DAL.Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Base.DAL.Contracts.dll": {}
+        }
+      },
+      "Base.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "Base.Contracts": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Base.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Base.Domain.dll": {}
         }
       },
       "Base.Resources/1.0.0": {
@@ -35,15 +91,35 @@
     }
   },
   "libraries": {
+    "App.BLL.DTO/1.0.0": {
+      "type": "project",
+      "path": "../App.BLL.DTO/App.BLL.DTO.csproj",
+      "msbuildProject": "../App.BLL.DTO/App.BLL.DTO.csproj"
+    },
     "App.Resources/1.0.0": {
       "type": "project",
       "path": "../App.Resources/App.Resources.csproj",
       "msbuildProject": "../App.Resources/App.Resources.csproj"
     },
+    "Base.BLL.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../Base.BLL.Contracts/Base.BLL.Contracts.csproj",
+      "msbuildProject": "../Base.BLL.Contracts/Base.BLL.Contracts.csproj"
+    },
     "Base.Contracts/1.0.0": {
       "type": "project",
       "path": "../Base.Contracts/Base.Contracts.csproj",
       "msbuildProject": "../Base.Contracts/Base.Contracts.csproj"
+    },
+    "Base.DAL.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../Base.DAL.Contracts/Base.DAL.Contracts.csproj",
+      "msbuildProject": "../Base.DAL.Contracts/Base.DAL.Contracts.csproj"
+    },
+    "Base.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Base.Domain/Base.Domain.csproj",
+      "msbuildProject": "../Base.Domain/Base.Domain.csproj"
     },
     "Base.Resources/1.0.0": {
       "type": "project",
@@ -53,7 +129,9 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "App.BLL.DTO >= 1.0.0",
       "App.Resources >= 1.0.0",
+      "Base.BLL.Contracts >= 1.0.0",
       "Base.Contracts >= 1.0.0",
       "Base.Resources >= 1.0.0"
     ]
@@ -84,8 +162,14 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
+            "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.BLL.DTO/App.BLL.DTO.csproj": {
+              "projectPath": "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.BLL.DTO/App.BLL.DTO.csproj"
+            },
             "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.Resources/App.Resources.csproj": {
               "projectPath": "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.Resources/App.Resources.csproj"
+            },
+            "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Base.BLL.Contracts/Base.BLL.Contracts.csproj": {
+              "projectPath": "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Base.BLL.Contracts/Base.BLL.Contracts.csproj"
             },
             "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Base.Contracts/Base.Contracts.csproj": {
               "projectPath": "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Base.Contracts/Base.Contracts.csproj"

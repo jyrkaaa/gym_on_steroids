@@ -12,7 +12,6 @@
           "App.BLL.Contracts": "1.0.0",
           "App.BLL.DTO": "1.0.0",
           "App.DAL": "1.0.0",
-          "App.DTO": "1.0.0",
           "App.Resources": "1.0.0",
           "Asp.Versioning.Mvc.ApiExplorer": "8.1.0",
           "Base.Helpers": "1.0.0",
@@ -2592,7 +2591,9 @@
       },
       "App.DTO/1.0.0": {
         "dependencies": {
+          "App.BLL.DTO": "1.0.0",
           "App.Resources": "1.0.0",
+          "Base.BLL.Contracts": "1.0.0",
           "Base.Contracts": "1.0.0",
           "Base.Resources": "1.0.0"
         },

@@ -1,9 +1,10 @@
 using App.DAL.DTO;
+using Base.Contracts;
 using Base.DAL.Contracts;
 
 namespace App.DAL.Mappers;
 
-public class ExerTargetMapper : IUOWMapper<App.DAL.DTO.ExerTarget, App.Domain.EF.ExerTarget>
+public class ExerTargetUOWMapper : IMapper<App.DAL.DTO.ExerTarget, App.Domain.EF.ExerTarget>
 {
     public ExerTarget? Map(Domain.EF.ExerTarget? entity)
     {

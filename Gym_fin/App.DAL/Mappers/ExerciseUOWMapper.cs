@@ -1,9 +1,10 @@
 using App.DAL.DTO;
+using Base.Contracts;
 using Base.DAL.Contracts;
 
 namespace App.DAL.Mappers;
 
-public class ExerciseUOWMapper : IUOWMapper<App.DAL.DTO.Exercise, App.Domain.EF.Exercise>
+public class ExerciseUOWMapper : IMapper<App.DAL.DTO.Exercise, App.Domain.EF.Exercise>
 {
     public Exercise? Map(Domain.EF.Exercise? entity)
     {
@@ -19,7 +20,6 @@ public class ExerciseUOWMapper : IUOWMapper<App.DAL.DTO.Exercise, App.Domain.EF.
             ExerGuideId = entity.ExerGuideId,
             ExerciseCategoryId = entity.ExerciseCategoryId,
             
-            // TODO: Map nested objects if needed
             ExerciseCategory = null,
             ExerTarget = null,
             ExerGuide = null,

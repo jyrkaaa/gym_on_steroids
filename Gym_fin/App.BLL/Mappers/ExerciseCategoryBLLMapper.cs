@@ -1,9 +1,10 @@
 using App.DAL.DTO;
 using Base.BLL.Contracts;
+using Base.Contracts;
 
 namespace App.BLL.Mappers;
 
-public class ExerciseCategoryBLLMapper : IBLLMapper<App.BLL.DTO.ExerciseCategory, App.DAL.DTO.ExerciseCategory>
+public class ExerciseCategoryBLLMapper : IMapper<App.BLL.DTO.ExerciseCategory, App.DAL.DTO.ExerciseCategory>
 {
     public ExerciseCategory? Map(DTO.ExerciseCategory? entity)
     {

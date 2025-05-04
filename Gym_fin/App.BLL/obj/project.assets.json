@@ -342,7 +342,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
+          "App.BLL.DTO": "1.0.0",
           "App.Resources": "1.0.0",
+          "Base.BLL.Contracts": "1.0.0",
           "Base.Contracts": "1.0.0",
           "Base.Resources": "1.0.0"
         },

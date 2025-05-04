@@ -8,7 +8,7 @@ namespace App.DAL.Repositories;
 
 public class ExerTargerRepository : BaseRepository<App.DAL.DTO.ExerTarget, App.Domain.EF.ExerTarget> , IExerTargetRepository
 {
-    public ExerTargerRepository(AppDbContext repositoryDbContext) : base(repositoryDbContext, new ExerTargetMapper())
+    public ExerTargerRepository(AppDbContext repositoryDbContext) : base(repositoryDbContext, new ExerTargetUOWMapper())
     {
     }
 

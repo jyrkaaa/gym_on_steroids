@@ -23,7 +23,7 @@ public class ExerciseRepository : BaseRepository<DTO.Exercise ,App.Domain.EF.Exe
             .Include(e => e.ExerGuide)
             .Include(e => e.ExerInWorkouts);
 
-        return (await query.ToListAsync()).Select(e => UOWMapper.Map(e)!);
+        return (await query.ToListAsync()).Select(e => Mapper.Map(e)!);
     }
 
     public override IEnumerable<DTO.Exercise> All(Guid userId = default)
@@ -35,7 +35,7 @@ public class ExerciseRepository : BaseRepository<DTO.Exercise ,App.Domain.EF.Exe
             .Include(e => e.ExerGuide)
             .Include(e => e.ExerInWorkouts);
 
-        return query.ToList().Select(e => UOWMapper.Map(e)!);
+        return query.ToList().Select(e => Mapper.Map(e)!);
     }
 
     public override async Task<DTO.Exercise?> FindAsync( Guid id, Guid userId = default!)
@@ -47,7 +47,7 @@ public class ExerciseRepository : BaseRepository<DTO.Exercise ,App.Domain.EF.Exe
             .Include(e => e.ExerInWorkouts)
             .FirstOrDefaultAsync(e => e.Id == id);
 
-        return UOWMapper.Map(entity);
+        return Mapper.Map(entity);
     }
 
     public override DTO.Exercise? Find(Guid id, Guid userId = default)
@@ -59,25 +59,25 @@ public class ExerciseRepository : BaseRepository<DTO.Exercise ,App.Domain.EF.Exe
             .Include(e => e.ExerInWorkouts)
             .FirstOrDefault(e => e.Id == id);
 
-        return UOWMapper.Map(entity);
+        return Mapper.Map(entity);
     }
 
     public override void Add(DTO.Exercise entity, Guid userId = default)
     {
-        var domainEntity = UOWMapper.Map(entity)!;
+        var domainEntity = Mapper.Map(entity)!;
         RepositoryDbSet.Add(domainEntity);
     }
 
-    public override DTO.Exercise Update(DTO.Exercise entity)
+    public DTO.Exercise Update(DTO.Exercise entity)
     {
-        var domainEntity = UOWMapper.Map(entity)!;
+        var domainEntity = Mapper.Map(entity)!;
         RepositoryDbSet.Update(domainEntity);
         return entity;
     }
 
     public override void Remove(DTO.Exercise entity, Guid userId = default)
     {
-        var domainEntity = UOWMapper.Map(entity)!;
+        var domainEntity = Mapper.Map(entity)!;
         RepositoryDbSet.Remove(domainEntity);
     }
 
@@ -90,7 +90,7 @@ public class ExerciseRepository : BaseRepository<DTO.Exercise ,App.Domain.EF.Exe
             .Include(e => e.ExerInWorkouts)
             .Where(e => e.ExerciseCategoryId == categoryId);
         var entities = await query.ToListAsync();
-        return entities.Select(e => UOWMapper.Map(e))!;
+        return entities.Select(e => Mapper.Map(e))!;
     }
     
 }

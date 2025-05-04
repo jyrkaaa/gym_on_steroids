@@ -12,6 +12,9 @@
             <response code="200">Returns the list of exercises</response>
             <response code="404">If no exercises are found</response>
         </member>
+        <member name="M:WebApp.ApiControllers.ExerciseController.#ctor(App.BLL.Contracts.IAppBLL,Microsoft.Extensions.Logging.ILogger{WebApp.ApiControllers.ExerciseController})">
+            <inheritdoc />
+        </member>
         <member name="M:WebApp.ApiControllers.ExerciseController.GetExercise">
             <summary>
             Gets all exercises for the logged-in user.
@@ -30,7 +33,7 @@
             <response code="404">If no exercises are found</response>
             <response code="401">Unauthorized Access</response>
         </member>
-        <member name="M:WebApp.ApiControllers.ExerciseController.PutExercise(System.Guid,App.BLL.DTO.Exercise)">
+        <member name="M:WebApp.ApiControllers.ExerciseController.PutExercise(System.Guid,App.DTO.v1.Exercise)">
             <summary>
             Edits exercise for the logged-in user with the provided id (GUID).
             </summary>
@@ -49,12 +52,42 @@
             <response code="404">If no exercises are found</response>
             <response code="401">Unauthorized Access</response>
         </member>
-        <member name="M:WebApp.ApiControllers.Identity.AccountController.RefreshToken(System.String)">
+        <member name="T:WebApp.ApiControllers.Identity.AccountController">
             <summary>
-            Refreshes JWT using a valid refresh token.
+            User account controller - login, register, etc.
             </summary>
-            <param name="refreshToken">The refresh token string.</param>
-            <returns>New JWT and the same (or new) refresh token.</returns>
+        </member>
+        <member name="M:WebApp.ApiControllers.Identity.AccountController.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Identity.UserManager{App.Domain.Identity.AppUser},Microsoft.AspNetCore.Identity.SignInManager{App.Domain.Identity.AppUser},Microsoft.Extensions.Logging.ILogger{WebApp.ApiControllers.Identity.AccountController},App.DAL.AppDbContext)">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:WebApp.ApiControllers.Identity.AccountController.Login(App.DTO.Identity.LoginInfo,System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            User authentication, returns JWT and refresh token
+            </summary>
+            <param name="loginInfo">Login model</param>
+            <param name="jwtExpiresInSeconds">Optional, use custom jwt expiration</param>
+            <param name="refreshTokenExpiresInSeconds">Optional, use custom refresh token expiration</param>
+            <returns>JWT and refresh token</returns>
+        </member>
+        <member name="M:WebApp.ApiControllers.Identity.AccountController.Register(App.DTO.Identity.Register,System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Register new user, returns JWT and refresh token
+            </summary>
+            <param name="registerModel">Reg info</param>
+            <param name="jwtExpiresInSeconds">Optional custom jwt expiration</param>
+            <param name="refreshTokenExpiresInSeconds">Optional custom refresh token expiration</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApp.ApiControllers.Identity.AccountController.RenewRefreshToken(App.DTO.Identity.RefreshTokenModel,System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Renew JWT using refresh token
+            </summary>
+            <param name="refreshTokenModel">Data for renewal</param>
+            <param name="jwtExpiresInSeconds">Optional custom expiration for jwt</param>
+            <param name="refreshTokenExpiresInSeconds">Optional custom expiration for refresh token</param>
+            <returns></returns>
         </member>
         <member name="T:WebApp.Areas.Identity.Pages.Account.AccessDeniedModel">
             <summary>

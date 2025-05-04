@@ -8,7 +8,7 @@ namespace App.DAL.Repositories;
 
 public class ExerGuideRepository : BaseRepository<App.DAL.DTO.ExerGuide, App.Domain.EF.ExerGuide> , IExerGuideRepository
 {
-    public ExerGuideRepository(AppDbContext repositoryDbContext) : base(repositoryDbContext, new ExerGuideMapper())
+    public ExerGuideRepository(AppDbContext repositoryDbContext) : base(repositoryDbContext, new ExerGuideUOWMapper())
     {
     }
 

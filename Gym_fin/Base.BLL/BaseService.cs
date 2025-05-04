@@ -10,7 +10,7 @@ public class BaseService<TBllEntity, TDalEntity, TDalRepository> : BaseService<T
     where TDalRepository: class, IBaseRepository<TDalEntity>
 
 {
-    public BaseService(IBaseUOW serviceUOW, TDalRepository serviceRepository, IBLLMapper<TBllEntity, TDalEntity, Guid> bllMapper) : base(serviceUOW, serviceRepository, bllMapper)
+    public BaseService(IBaseUOW serviceUOW, TDalRepository serviceRepository, IMapper<TBllEntity, TDalEntity, Guid> mapper) : base(serviceUOW, serviceRepository, mapper)
     {
     }
 }
@@ -21,16 +21,16 @@ public class BaseService<TBllEntity, TDalEntity, TDalRepository, TKey>: IBaseSer
     where TDalRepository: class, IBaseRepository<TDalEntity, TKey>
     where TKey : IEquatable<TKey>
 {
-    protected IBaseUOW ServiceUOW;
-    protected TDalRepository ServiceRepository;
-    protected IBLLMapper<TBllEntity, TDalEntity, TKey> BLLMapper;
+    protected readonly IBaseUOW ServiceUOW;
+    protected readonly TDalRepository ServiceRepository;
+    protected readonly IMapper<TBllEntity, TDalEntity, TKey> Mapper;
 
 
-    public BaseService(IBaseUOW serviceUOW, TDalRepository serviceRepository, IBLLMapper<TBllEntity, TDalEntity, TKey> bllMapper)
+    public BaseService(IBaseUOW serviceUOW, TDalRepository serviceRepository, IMapper<TBllEntity, TDalEntity, TKey> mapper)
     {
         ServiceUOW = serviceUOW;
         ServiceRepository = serviceRepository;
-        BLLMapper = bllMapper;
+        Mapper = mapper;
     }
     
     
@@ -38,38 +38,45 @@ public class BaseService<TBllEntity, TDalEntity, TDalRepository, TKey>: IBaseSer
     public virtual IEnumerable<TBllEntity> All(TKey? userId = default)
     {
         var entities = ServiceRepository.All(userId);
-        return entities.Select(e => BLLMapper.Map(e)!).ToList(); 
+        return entities.Select(e => Mapper.Map(e)!).ToList(); 
     }
 
     public virtual async Task<IEnumerable<TBllEntity>> AllAsync(TKey? userId = default)
     {
         var entities = await ServiceRepository.AllAsync(userId);
-        return entities.Select(e => BLLMapper.Map(e)!).ToList(); 
+        return entities.Select(e => Mapper.Map(e)!).ToList(); 
     }
 
     public virtual TBllEntity? Find(TKey id, TKey? userId = default)
     {
         var entity = ServiceRepository.Find(id, userId);
-        return BLLMapper.Map(entity);
+        return Mapper.Map(entity);
     }
 
-    public virtual async Task<TBllEntity?> FindAsync(TKey? id, TKey? userId = default!)
+    public virtual async Task<TBllEntity?> FindAsync(TKey id, TKey? userId = default)
     {
         var entity = await ServiceRepository.FindAsync(id, userId);
-        return BLLMapper.Map(entity);
+        return Mapper.Map(entity);
     }
 
     public virtual void Add(TBllEntity entity, TKey? userId = default)
     {
-        var dalEntity = BLLMapper.Map(entity);
+        var dalEntity = Mapper.Map(entity);
         ServiceRepository.Add(dalEntity!, userId);
     }
 
-    public virtual TBllEntity Update(TBllEntity entity)
+    public virtual TBllEntity? Update(TBllEntity entity, TKey? userId = default)
     {
-        var dalEntity = BLLMapper.Map(entity);
-        var updatedEntity = ServiceRepository.Update(dalEntity!);
-        return BLLMapper.Map(updatedEntity)!;
+        var dalEntity = Mapper.Map(entity);
+        var updatedEntity = ServiceRepository.Update(dalEntity!, userId);
+        return Mapper.Map(updatedEntity);
+    }
+    
+    public virtual async Task<TBllEntity?> UpdateAsync(TBllEntity entity, TKey? userId = default)
+    {
+        var dalEntity = Mapper.Map(entity);
+        var updatedEntity = await ServiceRepository.UpdateAsync(dalEntity!, userId);
+        return Mapper.Map(updatedEntity);
     }
 
     public virtual void Remove(TBllEntity entity, TKey? userId = default)
@@ -93,16 +100,6 @@ public class BaseService<TBllEntity, TDalEntity, TDalRepository, TKey>: IBaseSer
         {
             await ServiceRepository.RemoveAsync(id, userId);
         }
-    }
-
-    public bool Exists(Guid id, TKey? userId = default)
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<bool> ExistsAsync(Guid id, TKey? userId = default)
-    {
-        throw new NotImplementedException();
     }
 
     public virtual bool Exists(TKey id, TKey? userId = default)

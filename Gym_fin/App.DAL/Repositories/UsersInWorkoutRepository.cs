@@ -8,7 +8,7 @@ namespace App.DAL.Repositories;
 
 public class UsersInWorkoutRepository : BaseRepository<App.DAL.DTO.UsersInWorkout, App.Domain.EF.UsersInWorkout> , IUsersInWorkoutRepository
 {
-    public UsersInWorkoutRepository(AppDbContext repositoryDbContext) : base(repositoryDbContext, new UsersInWorkoutMapper())
+    public UsersInWorkoutRepository(AppDbContext repositoryDbContext) : base(repositoryDbContext, new UsersInWorkoutUOWMapper())
     {
     }
 

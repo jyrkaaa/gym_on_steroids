@@ -1,20 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using App.BLL.Contracts;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using App.DAL;
 using App.Domain.EF;
 using Asp.Versioning;
 using Base.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Swashbuckle.AspNetCore.Annotations;
-using ExerciseCategory = App.DTO.v1.ExerciseCategory;
-
 namespace WebApp.ApiControllers
 {
     [ApiVersion("1.0")]
@@ -24,10 +15,15 @@ namespace WebApp.ApiControllers
     public class ExerciseController : ControllerBase
     {
         private readonly IAppBLL _bll;
-
-        public ExerciseController(IAppBLL bll)
+        private readonly ILogger<ExerciseController> _logger;
+        private readonly App.DTO.v1.Mappers.ExerciseV1Mapper _mapper = new App.DTO.v1.Mappers.ExerciseV1Mapper();
+        private readonly App.DTO.v1.Mappers.ExerciseCategoryV1Mapper _mapperCat = new App.DTO.v1.Mappers.ExerciseCategoryV1Mapper();
+        
+        /// <inheritdoc />
+        public ExerciseController(IAppBLL bll, ILogger<ExerciseController> logger)
         {
             _bll = bll;
+            _logger = logger;
         }
 
         /// <summary>
@@ -44,34 +40,19 @@ namespace WebApp.ApiControllers
         public async Task<IEnumerable<App.DTO.v1.Exercise>> GetExercise()
         {
             
-            var data =( await _bll.ExerciseService.AllAsync(User.GetUserId())).ToList();
+            var data =( await _bll.ExerciseService.AllAsync()).ToList();
             if (data.Count <= 0) return Array.Empty<App.DTO.v1.Exercise>();
-            var res = data.Select(x => new App.DTO.v1.Exercise()
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Desc = x.Desc,
-                Date = x.Date,
-                ExerciseCategoryId = x.ExerciseCategoryId,
-                ExerTargetId = x.ExerTargetId,
-                ExerGuideId = x.ExerGuideId,
-            }).ToList();
-            foreach (App.DTO.v1.Exercise item in res)
-            {
-                var catId = item.ExerciseCategoryId;
-                var targetId = item.ExerTargetId;
-                var guideId = item.ExerGuideId;
-                if (catId == null) continue;
-                var cat = (await _bll.ExerciseCategoryService.FindAsync(catId.Value, User.GetUserId()));
-                if (cat == null) continue;
+            var res = data.Select(x => _mapper.Map(x)!).OrderBy(x => x.Name).ToList();
 
-                item.ExerciseCategory = new App.DTO.v1.ExerciseCategory()
+            foreach (var exercise in res)
+            {
+                var catId = exercise.ExerciseCategoryId;
+                if (catId != null)
                 {
-                    Id = cat.Id,
-                    Name = cat.Name,
-                };
+                    var cat = await _bll.ExerciseCategoryService.FindAsync(catId.Value);
+                    exercise.ExerciseCategory = _mapperCat.Map(cat);
+                }
             }
-
             return res;
         }
 
@@ -98,26 +79,7 @@ namespace WebApp.ApiControllers
             {
                 return NotFound();
             }
-
-            var exerciseV1 = new App.DTO.v1.Exercise()
-            {
-                Id = exercise.Id,
-                Name = exercise.Name,
-                Desc = exercise.Desc,
-                Date = exercise.Date,
-                ExerciseCategoryId = exercise.ExerciseCategoryId,
-                ExerTargetId = exercise.ExerTargetId,
-                ExerGuideId = exercise.ExerGuideId,
-            };
-            if (exercise.ExerciseCategoryId.HasValue)
-            {
-                var cat = await _bll.ExerciseCategoryService.FindAsync(exercise.ExerciseCategoryId.Value, User.GetUserId());
-                if (cat != null)
-                {
-                    exercise.ExerciseCategory = cat;
-                }
-            };
-            return exerciseV1;
+            return _mapper.Map(exercise)!;
         }
 
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -129,14 +91,14 @@ namespace WebApp.ApiControllers
         /// <response code="404">If no exercises are found</response>
         /// <response code="401">Unauthorized Access</response>
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutExercise(Guid id, App.BLL.DTO.Exercise exercise)
+        public async Task<IActionResult> PutExercise(Guid id, App.DTO.v1.Exercise exercise)
         {
             if (id != exercise.Id)
             {
                 return BadRequest();
             }
 
-            _bll.ExerciseService.Update(exercise);
+            await _bll.ExerciseService.UpdateAsync(_mapper.Map(exercise)!, User.GetUserId());
 
             await _bll.SaveChangesAsync();
             return NoContent();
@@ -145,15 +107,16 @@ namespace WebApp.ApiControllers
         // POST: api/Exercise
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Exercise>> PostExercise(App.BLL.DTO.Exercise exercise)
+        public async Task<ActionResult<Exercise>> PostExercise(App.DTO.v1.Exercise exercise)
         {
-            _bll.ExerciseService.Add(exercise, User.GetUserId());
+            var bllEntity = _mapper.Map(exercise);
+            _bll.ExerciseService.Add(bllEntity, User.GetUserId());
             await _bll.SaveChangesAsync();
 
-            return CreatedAtAction("GetPerson", new
+            return CreatedAtAction("GetExercise", new
             {
                 // todo - get person id
-                id = exercise.Id,
+                id = bllEntity.Id,
                 version = HttpContext.GetRequestedApiVersion()!.ToString()
             }, exercise);
         }
@@ -163,16 +126,10 @@ namespace WebApp.ApiControllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteExercise(Guid id)
         {
-            var exercise = await _bll.ExerciseService.FindAsync(id);
-            if (exercise == null)
-            {
-                return NotFound();
-            }
-
-            _bll.ExerciseService.Remove(exercise);
+            await _bll.ExerciseService.RemoveAsync(id, User.GetUserId());
             await _bll.SaveChangesAsync();
-
             return NoContent();
+
         }
 
         private bool ExerciseExists(Guid id)
@@ -193,9 +150,8 @@ namespace WebApp.ApiControllers
         [ProducesResponseType(404)]
         public async Task<IEnumerable<App.DTO.v1.Exercise>> GetExercisesByCategory(Guid categoryId)
         {
-            var userId = User.GetUserId(); // Get currently logged-in user's ID
 
-            var exercises = await _bll.ExerciseService.GetAllByCategoryIdAsync(categoryId, userId);
+            var exercises = await _bll.ExerciseService.GetAllByCategoryIdAsync(categoryId, User.GetUserId());
 
             if (!exercises.Any()) 
                 return Array.Empty<App.DTO.v1.Exercise>();

@@ -11,10 +11,12 @@ public class AppBLL : BaseBLL<IAppUOW>, IAppBLL
     public AppBLL(IAppUOW uow) : base(uow)
     {
     }
+    
     private IExerciseService? _exerciseService;
-
     public IExerciseService ExerciseService =>
         _exerciseService ??= new ExerciseService(BLLUOW, new ExerciseBLLMapper());
+    
     private IExerciseCategoryService? _exerciseCategoryService;
-    public IExerciseCategoryService ExerciseCategoryService => _exerciseCategoryService ??= new ExerciseCategoryService(BLLUOW, new ExerciseCategoryBLLMapper());
+    public IExerciseCategoryService ExerciseCategoryService =>
+        _exerciseCategoryService ??= new ExerciseCategoryService(BLLUOW, new ExerciseCategoryBLLMapper());
 }

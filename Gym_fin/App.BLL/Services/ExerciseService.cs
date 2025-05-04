@@ -1,9 +1,9 @@
-
 using Base.BLL;
 using App.BLL.Contracts;
 using App.DAL.Contracts;
 using App.DAL.DTO;
 using Base.BLL.Contracts;
+using Base.Contracts;
 
 
 namespace App.BLL.Services;
@@ -12,14 +12,13 @@ public class ExerciseService : BaseService<App.BLL.DTO.Exercise, App.DAL.DTO.Exe
 {
     public ExerciseService(
         IAppUOW serviceUOW,
-        IBLLMapper<DTO.Exercise, Exercise> bllMapper) : base(serviceUOW, serviceUOW.ExerciseRepository, bllMapper)
+        IMapper<DTO.Exercise, Exercise> mapper) : base(serviceUOW, serviceUOW.ExerciseRepository, mapper)
     {
-        
     }
-    public async Task<IEnumerable<App.DAL.DTO.Exercise>> GetAllByCategoryIdAsync(Guid categoryId, Guid userId)
+    public virtual async Task<IEnumerable<App.DAL.DTO.Exercise>> GetAllByCategoryIdAsync(Guid categoryId, Guid userId)
     {
         var exercises = await ServiceRepository.GetAllByCategoryIdAsync(categoryId, userId);
 
-        return exercises;
+        return exercises.ToList();
     }
 }

@@ -7,7 +7,7 @@ namespace App.DAL.Repositories;
 
 public class UserWeightRepository : BaseRepository<App.DAL.DTO.UserWeight, App.Domain.EF.UserWeight>, IUserWeightRepository
 {
-    public UserWeightRepository(AppDbContext repositoryDbContext) : base(repositoryDbContext, new UserWeightMapper())
+    public UserWeightRepository(AppDbContext repositoryDbContext) : base(repositoryDbContext, new UserWeightUOWMapper())
     {
     }
 

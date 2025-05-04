@@ -5,7 +5,7 @@ public class BaseRefreshToken : BaseRefreshToken<Guid>
     
 }
 
-public class BaseRefreshToken<TKey> : BaseEntity 
+public class BaseRefreshToken<TKey> : BaseEntity<TKey> 
     where TKey : IEquatable<TKey>
 {
     public string RefreshToken { get; set; } = Guid.NewGuid().ToString();

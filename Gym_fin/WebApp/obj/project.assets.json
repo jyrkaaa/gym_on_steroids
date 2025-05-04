@@ -3449,7 +3449,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
+          "App.BLL.DTO": "1.0.0",
           "App.Resources": "1.0.0",
+          "Base.BLL.Contracts": "1.0.0",
           "Base.Contracts": "1.0.0",
           "Base.Resources": "1.0.0"
         },
@@ -8887,7 +8889,6 @@
       "App.BLL.Contracts >= 1.0.0",
       "App.BLL.DTO >= 1.0.0",
       "App.DAL >= 1.0.0",
-      "App.DTO >= 1.0.0",
       "App.Resources >= 1.0.0",
       "Asp.Versioning.Mvc.ApiExplorer >= 8.1.0",
       "Base.Helpers >= 1.0.0",
@@ -8948,9 +8949,6 @@
             },
             "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.DAL/App.DAL.csproj": {
               "projectPath": "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.DAL/App.DAL.csproj"
-            },
-            "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.DTO/App.DTO.csproj": {
-              "projectPath": "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.DTO/App.DTO.csproj"
             },
             "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.Resources/App.Resources.csproj": {
               "projectPath": "/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/App.Resources/App.Resources.csproj"

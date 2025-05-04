@@ -8,7 +8,7 @@ namespace App.DAL.Repositories;
 
 public class SetInExercRepository : BaseRepository<App.DAL.DTO.SetInExerc, App.Domain.EF.SetInExerc> , ISetInExercRepository
 {
-    public SetInExercRepository(AppDbContext repositoryDbContext) : base(repositoryDbContext, new SetInExercMapper())
+    public SetInExercRepository(AppDbContext repositoryDbContext) : base(repositoryDbContext, new SetInExercUOWMapper())
     {
     }
 
