@@ -42,3 +42,4 @@
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Domain.EF/obj/Debug/net9.0/refint/App.Domain.EF.dll
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Domain.EF/obj/Debug/net9.0/App.Domain.EF.pdb
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Domain.EF/obj/Debug/net9.0/ref/App.Domain.EF.dll
+/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Domain.EF/bin/Debug/net9.0/et/App.Resources.resources.dll

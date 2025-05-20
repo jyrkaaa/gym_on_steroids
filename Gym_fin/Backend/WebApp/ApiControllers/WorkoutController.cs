@@ -13,6 +13,7 @@ using Asp.Versioning;
 using Base.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using UsersInWorkout = App.BLL.DTO.UsersInWorkout;
 
 namespace WebApp.ApiControllers
@@ -61,17 +62,26 @@ namespace WebApp.ApiControllers
         // PUT: api/Workout/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPatch("{id}")]
-        public async Task<IActionResult> PutWorkout(Guid id, App.DTO.v1.WorkoutEdit workout)
+        public async Task<ActionResult<App.DTO.v1.Workout>> PutWorkout(Guid id, App.DTO.v1.WorkoutEdit workout)
         {
             try
             {
-                var publicValue = workout.Public;
-                var success = await _bll.WorkoutService.PatchWorkoutAsync(id, User.GetUserId(), publicValue);
-                return success ? Ok() : NotFound();
+                var userId = User.GetUserId();
+
+                var updated = await _bll.WorkoutService.PatchWorkoutAsync(id, userId, workout.Public);
+                await _bll.SaveChangesAsync();
+                if (!updated)
+                {
+                    // Consider returning NotFound if the workout wasn't found or Unauthorized if the user is not allowed
+                    return Unauthorized(); // or return NotFound(); depending on business logic
+                }
+
+                return NoContent(); // 204 is standard for successful PATCH without returning the resource
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                // Use ProblemDetails format for standardized error responses
+                return Problem(detail: ex.Message, statusCode: 400, title: "Failed to patch workout");
             }
     
         }

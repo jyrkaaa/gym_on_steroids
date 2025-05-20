@@ -10,4 +10,19 @@
       <Folder Include="Domain\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <EmbeddedResource Update="Views\Shared\_Layout.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>_Layout.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Views\Shared\_Layout.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>_Layout.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
 </Project>

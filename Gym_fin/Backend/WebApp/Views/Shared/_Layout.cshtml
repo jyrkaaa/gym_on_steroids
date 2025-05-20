@@ -29,12 +29,53 @@
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                     @if (User.Identity?.IsAuthenticated ?? false)
+                    
                     {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Exercise" asp-action="Index">Exercises</a>
+                            <a class="nav-link text-dark" href="/swagger">Api</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="ExerciseCategory" asp-action="Index">Categorys</a>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" href="javascript:{}" id="userDropdown"
+                               role="button" data-bs-toggle="dropdown" aria-expanded="false">@Base.Resources.Common._LayoutUser</a>
+                            <div class="dropdown-menu" aria-labelledby="userDropdown">
+                                <a class="dropdown-item text-dark" asp-area="" asp-controller="Exercise" asp-action="Index">@App.Resources.Views.Shared._Layout.Exercise</a>
+                                <a class="dropdown-item text-dark" asp-area="" asp-controller="ExerciseCategory" asp-action="Index">@App.Resources.Views.Shared._Layout.ExerciseCategory</a>
+                                <a class="dropdown-item text-dark" asp-area="" asp-controller="Users" asp-action="Index">Users</a>
+                            </div>
+                        </li>
+
+                    }
+
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" href="javascript:{}" id="adminDropdown"
+                               role="button" data-bs-toggle="dropdown" aria-expanded="false">@Base.Resources.Common._LayoutAdmin</a>
+                            <div class="dropdown-menu" aria-labelledby="adminDropdown">
+
+                                <a class="dropdown-item text-dark" asp-area="admin" asp-controller="ExerciseCategory"
+                                   asp-action="Index">@App.Resources.Views.Shared._Layout.ExerciseCategory</a>
+                                <a class="dropdown-item text-dark" asp-area="admin" asp-controller="Exercise"
+                                   asp-action="Index">@App.Resources.Views.Shared._Layout.Exercise</a>
+
+                                <hr class="dropdown-divider">
+
+                                <a class="dropdown-item text-dark" asp-area="admin" asp-controller="Users"
+                                   asp-action="Index">Users</a>
+                                <a class="dropdown-item text-dark" asp-area="admin" asp-controller="Roles"
+                                   asp-action="Index">Roles</a>
+                                <a class="dropdown-item text-dark" asp-area="admin" asp-controller="UserRoles"
+                                   asp-action="Index">User Roles</a>
+                                <a class="dropdown-item text-dark" asp-area="admin" asp-controller="RefreshTokens"
+                                   asp-action="Index">Refresh Tokens</a>
+
+                                <hr class="dropdown-divider">
+
+                                <a class="dropdown-item text-dark" asp-area="admin" asp-controller="UserManagement"
+                                   asp-action="Index">User Management</a>
+
+                            </div>
                         </li>
                     }
 

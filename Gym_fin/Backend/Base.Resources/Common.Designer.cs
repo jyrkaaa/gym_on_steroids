@@ -56,5 +56,23 @@ namespace Base.Resources {
                 return ResourceManager.GetString("MaxLength", resourceCulture);
             }
         }
+        
+        public static string _LayoutUser {
+            get {
+                return ResourceManager.GetString("_LayoutUser", resourceCulture);
+            }
+        }
+        
+        public static string _LayoutAdmin {
+            get {
+                return ResourceManager.GetString("_LayoutAdmin", resourceCulture);
+            }
+        }
+        
+        public static string Users {
+            get {
+                return ResourceManager.GetString("Users", resourceCulture);
+            }
+        }
     }
 }

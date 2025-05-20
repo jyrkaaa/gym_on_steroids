@@ -5,6 +5,7 @@ using App.BLL;
 using App.BLL.Contracts;
 using App.DAL;
 using App.DAL.Contracts;
+using App.DAL.DataSeeding;
 using App.Domain.EF.Identity;
 using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;
@@ -29,8 +30,10 @@ Console.WriteLine(builder.Environment.IsProduction());
 if (builder.Environment.IsProduction())
 {
     builder.Services.AddDbContext<AppDbContext>(options =>
-        options.UseNpgsql(connectionString,
-            b => b.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)));
+        options.UseNpgsql(
+            connectionString,
+            b => b.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
+                .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTrackingWithIdentityResolution));
 }
 else
 {
@@ -39,7 +42,8 @@ else
                 b => b.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery))
             .ConfigureWarnings(warnings => warnings.Throw(RelationalEventId.MultipleCollectionIncludeWarning))
             .EnableDetailedErrors()
-            .EnableSensitiveDataLogging());
+            .EnableSensitiveDataLogging()
+            .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTrackingWithIdentityResolution));
     builder.Services.AddDatabaseDeveloperPageExceptionFilter();
     
 }
@@ -143,8 +147,11 @@ builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwa
 builder.Services.AddSwaggerGen();
 
 
-
+// ========================================================================
 var app = builder.Build();
+// ========================================================================
+SetupAppData(app, app.Environment, app.Configuration);
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -183,7 +190,7 @@ app.UseAuthorization();
 app.MapStaticAssets();
 
 app.MapControllerRoute(
-    name : "area",
+    name : "areas",
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
@@ -195,3 +202,90 @@ app.MapControllerRoute(
 app.MapRazorPages();
     
 app.Run();
+
+static void SetupAppData(IApplicationBuilder app, IWebHostEnvironment env, IConfiguration configuration)
+{
+    using var serviceScope = ((IApplicationBuilder)app).ApplicationServices
+        .GetRequiredService<IServiceScopeFactory>()
+        .CreateScope();
+    var logger = serviceScope.ServiceProvider.GetRequiredService<ILogger<IApplicationBuilder>>();
+
+    using var context = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+    WaitDbConnection(context, logger);
+
+    using var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
+    using var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<AppRole>>();
+
+
+    if (context.Database.ProviderName!.Contains("InMemory"))
+    {
+        context.Database.EnsureDeleted();
+        context.Database.EnsureCreated();
+        return;
+    }
+
+    if (configuration.GetValue<bool>("DataInitialization:DropDatabase"))
+    {
+        logger.LogWarning("DropDatabase");
+        AppDataInit.DeleteDatabase(context);
+    }
+
+    if (configuration.GetValue<bool>("DataInitialization:MigrateDatabase"))
+    {
+        logger.LogInformation("MigrateDatabase");
+        AppDataInit.MigrateDatabase(context);
+    }
+
+    if (configuration.GetValue<bool>("DataInitialization:SeedIdentity"))
+    {
+        logger.LogInformation("SeedIdentity");
+        AppDataInit.SeedIdentity(userManager, roleManager);
+        //For preset Exercise Categorys
+        AppDataInit.SeedCategorys(context);
+    }
+
+    if (configuration.GetValue<bool>("DataInitialization:SeedData"))
+    {
+        logger.LogInformation("SeedData");
+        AppDataInit.SeedAppData(context);
+    }
+}
+
+static void WaitDbConnection(AppDbContext ctx, ILogger<IApplicationBuilder> logger)
+{
+    // TODO: Login failed for user 'sa'. Reason: Failed to open the explicitly specified database 'nutikas'. [CLIENT: 172.18.0.3]
+    // could actually log in, but db was not there - migrations where not applied yet
+
+    // maybe Database.OpenConnection
+
+    while (true)
+    {
+        try
+        {
+            ctx.Database.OpenConnection();
+            ctx.Database.CloseConnection();
+            return;
+        }
+        catch (Npgsql.PostgresException e)
+        {
+            logger.LogWarning("Checked postgres db connection. Got: {}", e.Message);
+
+            if (e.Message.Contains("does not exist"))
+            {
+                logger.LogWarning("Applying migration, probably db is not there (but server is)");
+                return;
+            }
+
+            logger.LogWarning("Waiting for db connection. Sleep 1 sec");
+            System.Threading.Thread.Sleep(1000);
+        }
+    }
+}
+
+
+// ======================================================================================================
+// needed for unit testing, to change generated top level statement class to public
+public partial class Program
+{
+}

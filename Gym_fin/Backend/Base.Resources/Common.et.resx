@@ -17,4 +17,13 @@
     <data name="MaxLength" xml:space="preserve">
         <value>Liiga palju kirjutad</value>
     </data>
+    <data name="_LayoutUser" xml:space="preserve">
+        <value>Kasutaja</value>
+    </data>
+    <data name="_LayoutAdmin" xml:space="preserve">
+        <value>Administraator</value>
+    </data>
+    <data name="Users" xml:space="preserve">
+        <value>Kasutajad</value>
+    </data>
 </root>

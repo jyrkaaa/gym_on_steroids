@@ -1,0 +1,20 @@
+{
+  "App.BLL.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jurgenkuusik\/RiderProjects\/icd0024-24-25-s\/Gym_fin\/Backend\/App.BLL.Contracts",
+  "App.BLL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jurgenkuusik\/RiderProjects\/icd0024-24-25-s\/Gym_fin\/Backend\/App.BLL",
+  "App.BLL.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jurgenkuusik\/RiderProjects\/icd0024-24-25-s\/Gym_fin\/Backend\/App.BLL.DTO",
+  "App.DAL.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jurgenkuusik\/RiderProjects\/icd0024-24-25-s\/Gym_fin\/Backend\/App.DAL.Contracts",
+  "App.DAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jurgenkuusik\/RiderProjects\/icd0024-24-25-s\/Gym_fin\/Backend\/App.DAL",
+  "App.DAL.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jurgenkuusik\/RiderProjects\/icd0024-24-25-s\/Gym_fin\/Backend\/App.DAL.DTO",
+  "App.Domain.EF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jurgenkuusik\/RiderProjects\/icd0024-24-25-s\/Gym_fin\/Backend\/App.Domain.EF",
+  "App.DTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jurgenkuusik\/RiderProjects\/icd0024-24-25-s\/Gym_fin\/Backend\/App.DTO",
+  "App.Resources, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jurgenkuusik\/RiderProjects\/icd0024-24-25-s\/Gym_fin\/Backend\/App.Resources",
+  "Base.BLL.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jurgenkuusik\/RiderProjects\/icd0024-24-25-s\/Gym_fin\/Backend\/Base.BLL.Contracts",
+  "Base.BLL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jurgenkuusik\/RiderProjects\/icd0024-24-25-s\/Gym_fin\/Backend\/Base.BLL",
+  "Base.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jurgenkuusik\/RiderProjects\/icd0024-24-25-s\/Gym_fin\/Backend\/Base.Contracts",
+  "Base.DAL.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jurgenkuusik\/RiderProjects\/icd0024-24-25-s\/Gym_fin\/Backend\/Base.DAL.Contracts",
+  "Base.DAL.EF, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jurgenkuusik\/RiderProjects\/icd0024-24-25-s\/Gym_fin\/Backend\/Base.DAL.EF",
+  "Base.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jurgenkuusik\/RiderProjects\/icd0024-24-25-s\/Gym_fin\/Backend\/Base.Domain",
+  "Base.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jurgenkuusik\/RiderProjects\/icd0024-24-25-s\/Gym_fin\/Backend\/Base.Helpers",
+  "Base.Resources, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jurgenkuusik\/RiderProjects\/icd0024-24-25-s\/Gym_fin\/Backend\/Base.Resources",
+  "WebApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/Users\/jurgenkuusik\/RiderProjects\/icd0024-24-25-s\/Gym_fin\/Backend\/WebApp"
+}

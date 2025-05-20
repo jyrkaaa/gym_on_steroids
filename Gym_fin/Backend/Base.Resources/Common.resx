@@ -24,4 +24,13 @@
     <data name="MaxLength" xml:space="preserve">
         <value>Too much yapin</value>
     </data>
+    <data name="_LayoutUser" xml:space="preserve">
+        <value>User</value>
+    </data>
+    <data name="_LayoutAdmin" xml:space="preserve">
+        <value>Admin</value>
+    </data>
+    <data name="Users" xml:space="preserve">
+        <value>Users</value>
+    </data>
 </root>

@@ -100,3 +100,4 @@
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.DAL/obj/Debug/net9.0/refint/App.DAL.dll
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.DAL/obj/Debug/net9.0/App.DAL.pdb
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.DAL/obj/Debug/net9.0/ref/App.DAL.dll
+/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.DAL/bin/Debug/net9.0/et/App.Resources.resources.dll

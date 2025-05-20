@@ -37,4 +37,18 @@ dotnet aspnet-codegenerator controller -name UsersInWorkoutController  -m  App.D
 dotnet aspnet-codegenerator controller -name ExerGuideController  -m  App.Domain.EF.ExerGuide        -dc AppDbContext -outDir ApiControllers -api --useAsyncActions -f
 
 
+For ADMin: mvc
+
+cd WebApp
+
+dotnet aspnet-codegenerator controller -name ExerciseController        -actions -m  App.Domain.EF.Exercise        -dc AppDbContext -outDir Areas/Admin/Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name UserWeightController        -actions -m  App.Domain.EF.UserWeight        -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name WorkoutController        -actions -m  App.Domain.EF.Workout        -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name ExerInWorkoutController        -actions -m  App.Domain.EF.ExerInWorkout        -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name ExerciseCategoryController        -actions -m  App.Domain.EF.ExerciseCategory        -dc AppDbContext -outDir Areas/Admin/Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name ExerTargerController        -actions -m  App.Domain.EF.ExerTarget        -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name SetInExercController        -actions -m  App.Domain.EF.SetInExerc        -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name UsersInWorkoutController        -actions -m  App.Domain.EF.UsersInWorkout        -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+dotnet aspnet-codegenerator controller -name ExerGuideController        -actions -m  App.Domain.EF.ExerGuide        -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
+
 ~~~

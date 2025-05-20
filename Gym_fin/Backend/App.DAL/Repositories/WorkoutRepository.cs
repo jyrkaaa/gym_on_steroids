@@ -67,7 +67,7 @@ public class WorkoutRepository : BaseRepository<App.DAL.DTO.Workout, App.Domain.
                 efEntity.Public = publicWorkout;
             }
 
-            await RepositoryDbContext.SaveChangesAsync();
+            RepositoryDbContext.Update(efEntity);
             return true;
         }
         catch (Exception ex)

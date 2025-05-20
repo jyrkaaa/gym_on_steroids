@@ -42,3 +42,9 @@
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Resources/obj/Debug/net9.0/refint/App.Resources.dll
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Resources/obj/Debug/net9.0/App.Resources.pdb
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Resources/obj/Debug/net9.0/ref/App.Resources.dll
+/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Resources/bin/Debug/net9.0/et/App.Resources.resources.dll
+/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Resources/obj/Debug/net9.0/App.Resources.Views.Shared._Layout.resources
+/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Resources/obj/Debug/net9.0/App.Resources.Views.Shared._Layout.et.resources
+/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Resources/obj/Debug/net9.0/App.Resources.csproj.GenerateResource.cache
+/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Resources/obj/Debug/net9.0/et/App.Resources.resources.cs
+/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Resources/obj/Debug/net9.0/et/App.Resources.resources.dll

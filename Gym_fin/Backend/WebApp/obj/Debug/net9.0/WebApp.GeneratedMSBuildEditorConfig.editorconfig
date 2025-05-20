@@ -28,6 +28,54 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
+[/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/Areas/Admin/Views/Exercise/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRXhlcmNpc2UvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/Areas/Admin/Views/Exercise/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRXhlcmNpc2UvRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/Areas/Admin/Views/Exercise/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRXhlcmNpc2UvRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/Areas/Admin/Views/Exercise/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRXhlcmNpc2UvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/Areas/Admin/Views/Exercise/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRXhlcmNpc2UvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/Areas/Admin/Views/ExerciseCategory/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRXhlcmNpc2VDYXRlZ29yeS9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/Areas/Admin/Views/ExerciseCategory/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRXhlcmNpc2VDYXRlZ29yeS9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/Areas/Admin/Views/ExerciseCategory/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRXhlcmNpc2VDYXRlZ29yeS9EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/Areas/Admin/Views/ExerciseCategory/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRXhlcmNpc2VDYXRlZ29yeS9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/Areas/Admin/Views/ExerciseCategory/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRXhlcmNpc2VDYXRlZ29yeS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/Areas/Admin/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/Areas/Admin/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/Areas/Identity/Pages/Account/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvQWNjb3VudC9BY2Nlc3NEZW5pZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

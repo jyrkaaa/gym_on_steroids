@@ -110,13 +110,13 @@ namespace WebApp.ApiControllers
             {
                 // todo - get person id
                 id = bllEntity!.Id,
-                version = HttpContext.GetRequestedApiVersion()!.ToString()
-            }, exercise);
+            });
         }
 
 
         // DELETE: api/Exercise/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> DeleteExercise(Guid id)
         {

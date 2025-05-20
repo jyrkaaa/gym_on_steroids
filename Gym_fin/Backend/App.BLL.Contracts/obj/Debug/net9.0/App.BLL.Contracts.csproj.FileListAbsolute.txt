@@ -74,3 +74,4 @@
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.BLL.Contracts/obj/Debug/net9.0/refint/App.BLL.Contracts.dll
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.BLL.Contracts/obj/Debug/net9.0/App.BLL.Contracts.pdb
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.BLL.Contracts/obj/Debug/net9.0/ref/App.BLL.Contracts.dll
+/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.BLL.Contracts/bin/Debug/net9.0/et/App.Resources.resources.dll

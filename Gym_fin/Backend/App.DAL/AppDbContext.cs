@@ -41,6 +41,7 @@ public class AppDbContext : IdentityDbContext<AppUser, AppRole, Guid, IdentityUs
             .HasMany(e => e.Sets)
             .WithOne(s => s.ExerInWorkout)
             .HasForeignKey(s => s.ExerInWorkoutId);
+        
     }
 
     public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

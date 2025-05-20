@@ -269,6 +269,113 @@ namespace App.DAL.Migrations
                     b.ToTable("RefreshTokens");
                 });
 
+            modelBuilder.Entity("App.Domain.EF.Identity.AppRole", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex");
+
+                    b.ToTable("AspNetRoles", (string)null);
+                });
+
+            modelBuilder.Entity("App.Domain.EF.Identity.AppUser", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex");
+
+                    b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("App.Domain.EF.Identity.AppUserRole", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
+
             modelBuilder.Entity("App.Domain.EF.SetInExerc", b =>
                 {
                     b.Property<Guid>("Id")
@@ -292,6 +399,9 @@ namespace App.DAL.Migrations
 
                     b.Property<Guid>("ExerInWorkoutId")
                         .HasColumnType("uuid");
+
+                    b.Property<int>("Reps")
+                        .HasColumnType("integer");
 
                     b.Property<string>("SysNotes")
                         .HasColumnType("text");
@@ -409,113 +519,6 @@ namespace App.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Workout");
-                });
-
-            modelBuilder.Entity("App.Domain.Identity.AppRole", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex");
-
-                    b.ToTable("AspNetRoles", (string)null);
-                });
-
-            modelBuilder.Entity("App.Domain.Identity.AppUser", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("text");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex");
-
-                    b.ToTable("AspNetUsers", (string)null);
-                });
-
-            modelBuilder.Entity("App.Domain.Identity.AppUserRole", b =>
-                {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("RoleId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("UserId", "RoleId");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("AspNetUserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -648,13 +651,28 @@ namespace App.DAL.Migrations
 
             modelBuilder.Entity("App.Domain.EF.Identity.AppRefreshToken", b =>
                 {
-                    b.HasOne("App.Domain.Identity.AppUser", "User")
+                    b.HasOne("App.Domain.EF.Identity.AppUser", "User")
                         .WithMany("RefreshTokens")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("App.Domain.EF.Identity.AppUserRole", b =>
+                {
+                    b.HasOne("App.Domain.EF.Identity.AppRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("App.Domain.EF.Identity.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("App.Domain.EF.SetInExerc", b =>
@@ -670,7 +688,7 @@ namespace App.DAL.Migrations
 
             modelBuilder.Entity("App.Domain.EF.UserWeight", b =>
                 {
-                    b.HasOne("App.Domain.Identity.AppUser", "NetUser")
+                    b.HasOne("App.Domain.EF.Identity.AppUser", "NetUser")
                         .WithMany("UserWeights")
                         .HasForeignKey("NetUserId");
 
@@ -679,7 +697,7 @@ namespace App.DAL.Migrations
 
             modelBuilder.Entity("App.Domain.EF.UsersInWorkout", b =>
                 {
-                    b.HasOne("App.Domain.Identity.AppUser", "NetUser")
+                    b.HasOne("App.Domain.EF.Identity.AppUser", "NetUser")
                         .WithMany("Workouts")
                         .HasForeignKey("NetUserId");
 
@@ -692,24 +710,9 @@ namespace App.DAL.Migrations
                     b.Navigation("Workout");
                 });
 
-            modelBuilder.Entity("App.Domain.Identity.AppUserRole", b =>
-                {
-                    b.HasOne("App.Domain.Identity.AppRole", null)
-                        .WithMany()
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("App.Domain.Identity.AppUser", null)
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
                 {
-                    b.HasOne("App.Domain.Identity.AppRole", null)
+                    b.HasOne("App.Domain.EF.Identity.AppRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -718,7 +721,7 @@ namespace App.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
                 {
-                    b.HasOne("App.Domain.Identity.AppUser", null)
+                    b.HasOne("App.Domain.EF.Identity.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -727,7 +730,7 @@ namespace App.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
                 {
-                    b.HasOne("App.Domain.Identity.AppUser", null)
+                    b.HasOne("App.Domain.EF.Identity.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -736,7 +739,7 @@ namespace App.DAL.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
                 {
-                    b.HasOne("App.Domain.Identity.AppUser", null)
+                    b.HasOne("App.Domain.EF.Identity.AppUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -768,20 +771,20 @@ namespace App.DAL.Migrations
                     b.Navigation("Exercises");
                 });
 
-            modelBuilder.Entity("App.Domain.EF.Workout", b =>
-                {
-                    b.Navigation("Exercises");
-
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("App.Domain.Identity.AppUser", b =>
+            modelBuilder.Entity("App.Domain.EF.Identity.AppUser", b =>
                 {
                     b.Navigation("RefreshTokens");
 
                     b.Navigation("UserWeights");
 
                     b.Navigation("Workouts");
+                });
+
+            modelBuilder.Entity("App.Domain.EF.Workout", b =>
+                {
+                    b.Navigation("Exercises");
+
+                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

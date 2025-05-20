@@ -263,7 +263,9 @@ public class AccountController : ControllerBase
         }
 
         // get user and tokens
-        var appUser = await _userManager.FindByEmailAsync(userEmail);
+        //var appUser = await _userManager.FindByEmailAsync(userEmail);
+        var appUser = await _context.Users.Include(u => u.RefreshTokens)
+            .FirstOrDefaultAsync(u => u.Email == userEmail);
         if (appUser == null)
         {
             return NotFound($"User with email {userEmail} not found");
@@ -272,7 +274,7 @@ public class AccountController : ControllerBase
 
         // load and compare refresh tokens
 
-        await _context.Entry(appUser).Collection(u => u.RefreshTokens!)
+         appUser.RefreshTokens = await _context.Entry(appUser).Collection(u => u.RefreshTokens!)
             .Query()
             .Where(x =>
                 (x.RefreshToken == refreshTokenModel.RefreshToken && x.Expiration > DateTime.UtcNow) ||
@@ -311,7 +313,7 @@ public class AccountController : ControllerBase
         );
 
         // make new refresh token, obsolete old ones
-        var refreshToken = appUser.RefreshTokens.First();
+        /*var refreshToken = appUser.RefreshTokens.First();
         if (refreshToken.RefreshToken == refreshTokenModel.RefreshToken)
         {
             refreshToken.PreviousRefreshToken = refreshToken.RefreshToken;
@@ -322,12 +324,12 @@ public class AccountController : ControllerBase
                 GetExpirationDateTime(refreshTokenExpiresInSeconds, SettingsJWTRefreshTokenExpiresInSeconds);
 
             await _context.SaveChangesAsync();
-        }
+        }*/
 
         var res = new JWTResponse()
         {
             JWT = jwt,
-            RefreshToken = refreshToken.RefreshToken,
+            RefreshToken = appUser.RefreshTokens.First().RefreshToken,
         };
 
         return Ok(res);
@@ -345,8 +347,10 @@ public class AccountController : ControllerBase
         // so client can actually continue to use the jwt until it expires (keep the jwt expiration time short ~1 min)
 
         var appUser = await _context.Users
+            .Include(u => u.RefreshTokens)
             .Where(u => u.Id == User.GetUserId())
             .SingleOrDefaultAsync();
+
         if (appUser == null)
         {
             return NotFound(

@@ -102,6 +102,7 @@ namespace WebApp.ApiControllers
 
         // DELETE: api/Category/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteCategory(Guid id)
         {
             var exercise = await _bll.ExerciseService.FindAsync(id);
