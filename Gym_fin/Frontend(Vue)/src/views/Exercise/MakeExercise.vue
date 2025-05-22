@@ -47,10 +47,7 @@ const addExercise = async () => {
   }
   const exerciseService = new ExerciseService();
   const res = await exerciseService.addAsync(entity);
-  if (res.data) {
-    await router.push('/exercises')
-  }
-
+  await router.push('/exercises')
 }
 
 </script>

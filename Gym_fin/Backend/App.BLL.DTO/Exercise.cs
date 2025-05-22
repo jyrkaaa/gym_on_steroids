@@ -10,7 +10,8 @@ public class Exercise : IDomainId
     public string Name { get; set; } = default!;
     [MaxLength(255, ErrorMessageResourceType = typeof(Base.Resources.Common), ErrorMessageResourceName = "MaxLength")]
     public string? Desc { get; set; }
-    
+    public string? CreatedBy { get; set; }
+
     public DateTimeOffset Date { get; set; }
 
     public Guid? ExerTargetId { get; set; }

@@ -12,4 +12,5 @@ public interface IWorkoutRepositoryCustom
 {
     public Task<IEnumerable<App.DAL.DTO.Workout>> AllAsync(Guid userId, string? name, DateTimeOffset? dateFrom, DateTimeOffset? dateTo);
     public Task<bool> PatchWorkoutAsync(Guid id, Guid userId, bool publicState);
+    public Task<IEnumerable<App.DAL.DTO.Workout>> AllAsyncExercise(Guid exerciseId, Guid userId);
 }

@@ -265,7 +265,7 @@ public class AccountController : ControllerBase
         // get user and tokens
         //var appUser = await _userManager.FindByEmailAsync(userEmail);
         var appUser = await _context.Users.Include(u => u.RefreshTokens)
-            .FirstOrDefaultAsync(u => u.Email == userEmail);
+            .FirstOrDefaultAsync(u => u.RefreshTokens!.Any(r => r.RefreshToken == refreshTokenModel.RefreshToken));
         if (appUser == null)
         {
             return NotFound($"User with email {userEmail} not found");
@@ -313,8 +313,9 @@ public class AccountController : ControllerBase
         );
 
         // make new refresh token, obsolete old ones
-        /*var refreshToken = appUser.RefreshTokens.First();
-        if (refreshToken.RefreshToken == refreshTokenModel.RefreshToken)
+        /*var refreshTokenUser = appUser.RefreshTokens.First();
+        var refreshToken = _context.RefreshTokens.FirstOrDefault(x => x.Id == refreshTokenUser.Id);
+        if (refreshToken?.RefreshToken == refreshTokenModel.RefreshToken)
         {
             refreshToken.PreviousRefreshToken = refreshToken.RefreshToken;
             refreshToken.PreviousExpiration = DateTime.UtcNow.AddMinutes(1);

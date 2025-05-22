@@ -40,6 +40,7 @@ public class WorkoutBLLMapper : IMapper<App.BLL.DTO.Workout, App.DAL.DTO.Workout
             Id = entity.Id,
             Name = entity.Name,
             Date = entity.Date,
+            CreatedBy = entity.CreatedBy,
             Exercises = entity.Exercises?.Select(e => new DTO.ExerInWorkout()
             {
                 Id = e.Id,

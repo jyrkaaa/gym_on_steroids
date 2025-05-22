@@ -8,6 +8,7 @@ public class Workout : IDomainId
 {
     public Guid Id { get; set; }
     public DateTime? Date { get; set; }
+    public string? CreatedBy { get; set; }
 
     [Required]
     [MaxLength(255, ErrorMessageResourceType = typeof(Base.Resources.Common), ErrorMessageResourceName = "MaxLength")]

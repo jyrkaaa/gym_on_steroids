@@ -20,4 +20,9 @@ public class ExerciseService : BaseService<App.BLL.DTO.Exercise, App.DAL.DTO.Exe
     {
         return (await ServiceRepository.AllAsync(userId, categoryId)).Select(exercise => Mapper.Map(exercise!));
     }
+
+    public Task RemoveAsyncSafe(Guid exerciseId, Guid? userId)
+    {
+        return ServiceRepository.RemoveAsyncSafe(exerciseId, userId);
+    }
 }

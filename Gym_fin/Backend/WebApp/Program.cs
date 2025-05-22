@@ -9,6 +9,7 @@ using App.DAL.DataSeeding;
 using App.Domain.EF.Identity;
 using Asp.Versioning;
 using Asp.Versioning.ApiExplorer;
+using Base.Contracts;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +19,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using WebApp;
+using WebApp.Helpers;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -85,6 +87,8 @@ builder.Services
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IUserNameResolver, UserNameResolver>();
+
 
 
 // Add culture support

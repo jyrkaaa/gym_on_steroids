@@ -147,6 +147,10 @@ public class BaseRepository<TDalEntity, TDomainEntity, TKey> : IBaseRepository<T
     {
         var query = GetQuery(userId);
         query = query.Where(e => e.Id.Equals(id));
+        if (userId != null)
+        {
+            query = query.Where(e => e.Id.Equals(id));
+        }
         var dbEntity = await query.FirstOrDefaultAsync();
         if (dbEntity != null)
         {

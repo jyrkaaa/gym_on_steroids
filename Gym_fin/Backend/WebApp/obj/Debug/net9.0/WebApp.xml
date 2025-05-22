@@ -153,6 +153,15 @@
             <response code="404">If no entities are found</response>
             <response code="401">Unauthorized Access</response>
         </member>
+        <member name="M:WebApp.ApiControllers.WorkoutController.GetWorkoutsByExerciseId(System.Guid)">
+            <summary>
+            Gets all Workouts that include a specific exercise.
+            </summary>
+            <returns>List of Workout DTOs.</returns>
+            <response code="200">Returns the list of Workouts from User</response>
+            <response code="404">If no entities are found</response>
+            <response code="401">Unauthorized Access</response>
+        </member>
         <member name="T:WebApp.Areas.Identity.Pages.Account.AccessDeniedModel">
             <summary>
                 This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used

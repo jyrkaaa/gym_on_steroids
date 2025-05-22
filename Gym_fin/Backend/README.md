@@ -52,3 +52,7 @@ dotnet aspnet-codegenerator controller -name UsersInWorkoutController        -ac
 dotnet aspnet-codegenerator controller -name ExerGuideController        -actions -m  App.Domain.EF.ExerGuide        -dc AppDbContext -outDir Controllers --useDefaultLayout --useAsyncActions --referenceScriptLibraries -f
 
 ~~~
+~~~sh
+In Backend catalog
+docker run --name gym_docker_be --rm -it -p 8888:8080 webapp
+~~~

@@ -23,6 +23,7 @@ public class ExerciseCategoryUOWMapper : IMapper<App.DAL.DTO.ExerciseCategory, A
                 ExerciseCategoryId = p.ExerciseCategoryId,
                 ExerGuideId = p.ExerGuideId,
                 ExerTargetId = p.ExerTargetId,
+                CreatedBy = p.CreatedBy
             }).ToList(),
         };
     }

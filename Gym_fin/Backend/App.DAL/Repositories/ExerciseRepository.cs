@@ -77,10 +77,18 @@ public class ExerciseRepository : BaseRepository<DTO.Exercise ,App.Domain.EF.Exe
         return Mapper.Map(domainEntity)!;
     }
 
-    public override void Remove(DTO.Exercise entity, Guid userId = default)
+    public virtual async Task RemoveAsyncSafe(Guid exerciseId, Guid? userId = default)
     {
-        var domainEntity = Mapper.Map(entity)!;
-        RepositoryDbSet.Remove(domainEntity);
+        if (userId != null)
+        {
+            var query = GetQuery(userId.Value!)
+                .Where(e => e.Id == exerciseId && e.CreatedBy == userId.ToString());
+            var deletableEntity = await query.FirstOrDefaultAsync();
+            if (deletableEntity != null)
+            {
+                RepositoryDbSet.Remove(deletableEntity);
+            }
+        }
     }
     
 

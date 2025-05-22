@@ -76,6 +76,22 @@ public class WorkoutRepository : BaseRepository<App.DAL.DTO.Workout, App.Domain.
         }
     }
 
+    public async Task<IEnumerable<DTO.Workout>> AllAsyncExercise(Guid exerciseId, Guid userId)
+    {
+        var query = GetQuery(userId);
+        query = query
+            .Include(w => w!.Exercises)
+                .ThenInclude(e => e.Exercise)
+            .Include(w => w!.Exercises)
+                .ThenInclude(e => e.Sets)
+            .Include(w => w!.Users)
+                .ThenInclude(u => u.NetUser)
+            .OrderByDescending(w => w.Date)
+            .Where(w => w.Exercises!.Any(e => e.ExerciseId == exerciseId) && w.Users!.Any(u => u.NetUserId == userId));
+            ;
+        return (await query.ToListAsync()).Select(w => Mapper.Map(w!));
+    }
+
     public Workout? Find(Guid id, Guid userId = default)
     {
         throw new NotImplementedException();
@@ -85,11 +101,11 @@ public class WorkoutRepository : BaseRepository<App.DAL.DTO.Workout, App.Domain.
     {
         return Mapper.Map(await RepositoryDbSet
             .Include(w => w!.Users)
-            .ThenInclude(u => u.NetUser)
+                .ThenInclude(u => u.NetUser)
             .Include(w => w.Exercises!)
-            .ThenInclude(e => e.Sets)
+                .ThenInclude(e => e.Sets)
             .Include(w => w.Exercises!)
-            .ThenInclude(e => e.Exercise)
+                .ThenInclude(e => e.Exercise)
             .Where(w => w.Id == id)
             .Where(w => w.Users!.Any(u => u.NetUserId == userId) || w.Public == true)
             .FirstOrDefaultAsync());

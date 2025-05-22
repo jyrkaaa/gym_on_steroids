@@ -12,6 +12,7 @@ public class WorkoutV1Mapper : IBLLMapper<App.DTO.v1.Workout, App.BLL.DTO.Workou
             Id = entity.Id,
             Name = entity.Name,
             Date = entity.Date,
+            CreatedBy = entity.CreatedBy,
             Exercises = entity.Exercises?.Select(e => new ExerInWorkout()
             {
                 Id = e.Id,

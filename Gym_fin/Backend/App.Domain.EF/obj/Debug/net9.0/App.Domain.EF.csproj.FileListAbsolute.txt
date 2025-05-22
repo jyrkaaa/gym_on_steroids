@@ -31,6 +31,7 @@
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Domain.EF/bin/Debug/net9.0/Base.Domain.pdb
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Domain.EF/bin/Debug/net9.0/Base.Resources.pdb
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Domain.EF/bin/Debug/net9.0/Base.Contracts.pdb
+/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Domain.EF/bin/Debug/net9.0/et/App.Resources.resources.dll
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Domain.EF/bin/Debug/net9.0/et/Base.Resources.resources.dll
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Domain.EF/obj/Debug/net9.0/App.Domain.EF.csproj.AssemblyReference.cache
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Domain.EF/obj/Debug/net9.0/App.Domain.EF.GeneratedMSBuildEditorConfig.editorconfig
@@ -42,4 +43,3 @@
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Domain.EF/obj/Debug/net9.0/refint/App.Domain.EF.dll
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Domain.EF/obj/Debug/net9.0/App.Domain.EF.pdb
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Domain.EF/obj/Debug/net9.0/ref/App.Domain.EF.dll
-/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Domain.EF/bin/Debug/net9.0/et/App.Resources.resources.dll

@@ -116,6 +116,20 @@ namespace WebApp.ApiControllers
 
             return NoContent();
         }
-        
+        /// <summary>
+        /// Gets all Workouts that include a specific exercise.
+        /// </summary>
+        /// <returns>List of Workout DTOs.</returns>
+        /// <response code="200">Returns the list of Workouts from User</response>
+        /// <response code="404">If no entities are found</response>
+        /// <response code="401">Unauthorized Access</response>
+        [HttpGet("all/{exerciseId}")]
+        [ProducesResponseType(typeof(IEnumerable<App.DTO.v1.Workout>), 200)]
+        [Produces("application/json")]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult<IEnumerable<App.DTO.v1.Workout>>> GetWorkoutsByExerciseId(Guid exerciseId)
+        {
+            return (await _bll.WorkoutService.AllAsyncExercise(exerciseId, User.GetUserId())).Select(w => _mapper.Map(w)!).ToList();
+        }
     }
 }

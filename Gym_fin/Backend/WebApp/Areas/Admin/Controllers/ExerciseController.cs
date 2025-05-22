@@ -123,8 +123,9 @@ namespace WebApp.Areas.Admin.Controllers
             {
                 try
                 {
+                    exercise.Date = DateTime.UtcNow;
                     _context.Update(exercise);
-                    await _context.SaveChangesAsync();
+                    await _context.SaveChangesAsyncWithhoutHardcode();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -184,6 +185,39 @@ namespace WebApp.Areas.Admin.Controllers
         private bool ExerciseExists(Guid id)
         {
             return _context.Exercise.Any(e => e.Id == id);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditToAdmin(Guid id)
+        {
+            var exercise = await _context.Exercise.FindAsync(id);
+            if (exercise == null)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    exercise.CreatedBy = "admin";
+                    _context.Update(exercise);
+                    await _context.SaveChangesAsyncWithhoutHardcode();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ExerciseExists(exercise.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return BadRequest();
         }
     }
 }

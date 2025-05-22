@@ -9,6 +9,7 @@ COPY App.BLL/*.csproj ./App.BLL/
 COPY App.BLL.Contracts/*.csproj ./App.BLL.Contracts/
 COPY App.BLL.DTO/*.csproj ./App.BLL.DTO/
 COPY App.DAL/*.csproj ./App.DAL/
+COPY App.Tests/*.csproj ./App.Tests/
 COPY App.DAL.Contracts/*.csproj ./App.DAL.Contracts/
 COPY App.DAL.DTO/*.csproj ./App.DAL.DTO/
 COPY App.DTO/*.csproj ./App.DTO/
@@ -48,9 +49,11 @@ COPY WebApp/. ./WebApp/
 
 RUN dotnet publish -c Release -o out
 
+#Tehakse uus image
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
 WORKDIR /app
+EXPOSE 80
 EXPOSE 8080
-ENV ConnectionStrings:SqlServerConnection="Host=host.docer.internal;Port=5432;Database=gymDb;Username=postgres;Password=postgres"
 COPY --from=build /app/out ./
+ENV ConnectionStrings:DefaultConnection="Host=host.docker.internal;Port=5432;Database=postgres;Username=postgres;Password=postgres"
 ENTRYPOINT ["dotnet", "WebApp.dll"]

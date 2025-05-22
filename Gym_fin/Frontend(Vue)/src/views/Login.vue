@@ -32,7 +32,6 @@ const doLogin = async () => {
 </script>
 
 <template>
-  <div>{{ authStore.isAuthenticated }}</div>
   <h1>Log in</h1>
   <div class="row">
     <div class="col-md-6">

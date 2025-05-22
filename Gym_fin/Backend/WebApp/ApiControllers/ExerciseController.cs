@@ -116,20 +116,16 @@ namespace WebApp.ApiControllers
 
         // DELETE: api/Exercise/5
         [HttpDelete("{id}")]
-        [Authorize(Roles = "admin")]
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> DeleteExercise(Guid id)
         {
-            await _bll.ExerciseService.RemoveAsync(id, User.GetUserId());
-            await _bll.SaveChangesAsync();
-            return NoContent();
+            await _bll.ExerciseService.RemoveAsyncSafe(id, User.GetUserId());
+            var result = await _bll.SaveChangesAsync();
+            if (result == 0) return BadRequest();
+            return Ok(new { TokenDeleteCount = result });
 
         }
-
-        private bool ExerciseExists(Guid id)
-        {
-            return _bll.ExerciseService.Exists(id);
-        }
+        
 
     }
 }

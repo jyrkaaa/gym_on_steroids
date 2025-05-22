@@ -11,5 +11,6 @@ public interface IExerciseService : IBaseService<App.BLL.DTO.Exercise>, IExercis
 public interface IExerciseServiceCustom
 {
     Task<IEnumerable<App.BLL.DTO.Exercise>> AllAsync(Guid? userId, Guid? categoryId);
+    Task RemoveAsyncSafe(Guid exerciseId, Guid? userId);
 }
 

@@ -13,4 +13,5 @@ public interface IWorkoutRepositoryCustom
 {
     Task<IEnumerable<App.BLL.DTO.Workout>> AllAsync(Guid? userId, string? name, DateTimeOffset? fromDate, DateTimeOffset? toDate);
     Task<bool> PatchWorkoutAsync(Guid id, Guid userId, bool publicState);
+    Task<IEnumerable<App.BLL.DTO.Workout>> AllAsyncExercise(Guid exerciseId, Guid userId);
 }

@@ -7,5 +7,5 @@ export interface IExerInWorkout extends IDomainId {
   workoutId: string | undefined
   exerciseId: string | undefined
   exercise: IExercise | undefined
-  Sets: ISetInExerc[] | undefined
+  sets: ISetInExerc[] | undefined
 }

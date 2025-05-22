@@ -13,6 +13,11 @@ public static class IdentityExtensions
         var userId = Guid.Parse(userIdStr);
         return userId;
     }
+    public static Guid? GetUserIdSafe(this ClaimsPrincipal claimsPrincipal)
+    {
+        var claim = claimsPrincipal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+        return claim != null && Guid.TryParse(claim.Value, out var guid) ? guid : (Guid?)null;
+    }
     
     private static readonly JwtSecurityTokenHandler JWTSecurityTokenHandler = new JwtSecurityTokenHandler();
 

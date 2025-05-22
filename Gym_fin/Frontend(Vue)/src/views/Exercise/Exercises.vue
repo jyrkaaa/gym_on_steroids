@@ -4,10 +4,14 @@ import { ExerciseCategoryService } from '@/services/ExerciseCategoryService.ts'
 import type { IResultObject } from '@/types.ts'
 import type { IExerciseCategory } from '@/domain/IExerciseCategory.ts'
 import { RouterLink } from 'vue-router'
+import { ExerciseService } from '@/services/ExerciseService.ts'
+import { useAuthStore } from '@/stores/auth.ts'
 
 const requestIsOngoing = ref(false)
 const data = reactive<IResultObject<IExerciseCategory[]>>({})
 const searchQuery = ref('')
+let errors = ref<string[]>([]);
+const store = useAuthStore();
 
 const fetchPageData = async () => {
   requestIsOngoing.value = true
@@ -45,10 +49,24 @@ const filteredData = computed(() => {
         : null
     })
     .filter(Boolean)
-})
+});
+const deleteExercise = async (id: string) => {
+  console.log("Deleting exercise with id:" + id)
+  await store.refreshJwtIfNeeded();
+  const exerciseService = new ExerciseService();
+  const delResult = await exerciseService.removeAsync2(id)
+  console.log(delResult);
+  if (delResult.errors) {
+    errors.value = delResult.errors;
+  } else {
+    errors.value = [];
+    await fetchPageData();
+  }
+}
 </script>
 
 <template>
+  <div class="alert alert-danger" v-if="errors.length != 0 && errors">Can't delete Exercise because the exercise isn't created by you.</div>
   <div class="container mt-5">
     <h1>All Exercises</h1>
 
@@ -78,7 +96,7 @@ const filteredData = computed(() => {
                 <p class="card-text">
                   {{ exercise.desc || 'No description provided' }}
                 </p>
-                <button class="btn btn-danger">Delete Exercise</button>
+                <button @click.prevent="deleteExercise(exercise.id)" class="btn btn-danger">Delete Exercise</button>
               </div>
             </div>
           </div>

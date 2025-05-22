@@ -90,7 +90,7 @@ const showModal = ref(false);
 const workoutToDelete = ref<{ id: string; name: string } | null>(null);
 
 const confirmDelete = (id: string, name: string) => {
-  console.log(id);
+  store.refreshJwtIfNeeded();
   workoutToDelete.value = { id, name };
   showModal.value = true;
 };
@@ -99,13 +99,16 @@ const deleteWorkout = async (id : string | undefined) => {
   if (id == undefined) return;
   console.log(id);
   const uiwService = new UsersInWorkoutService();
-  await uiwService.removeAsync(id!)
-  await fetchPageData()
+  await uiwService.removeAsync(id!);
+  await fetchPageData();
   showModal.value = false;
 
 }
 const updateDates = async () =>
-{await fetchPageData()}
+{
+  await store.refreshJwtIfNeeded();
+  await fetchPageData();
+}
 
 </script>
 

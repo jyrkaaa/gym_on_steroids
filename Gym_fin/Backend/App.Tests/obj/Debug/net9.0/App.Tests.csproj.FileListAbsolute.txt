@@ -695,6 +695,7 @@
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Tests/bin/Debug/net9.0/Base.Domain.pdb
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Tests/bin/Debug/net9.0/Base.Helpers.pdb
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Tests/bin/Debug/net9.0/Base.Resources.pdb
+/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Tests/bin/Debug/net9.0/et/App.Resources.resources.dll
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Tests/bin/Debug/net9.0/et/Base.Resources.resources.dll
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Tests/obj/Debug/net9.0/App.Tests.csproj.AssemblyReference.cache
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Tests/obj/Debug/net9.0/MvcTestingAppManifest.json
@@ -708,4 +709,3 @@
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Tests/obj/Debug/net9.0/App.Tests.pdb
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Tests/obj/Debug/net9.0/App.Tests.genruntimeconfig.cache
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Tests/obj/Debug/net9.0/ref/App.Tests.dll
-/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/App.Tests/bin/Debug/net9.0/et/App.Resources.resources.dll

@@ -24,6 +24,9 @@
             @Html.DisplayNameFor(model => model.Date)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.ExerciseCategory)
         </th>
         <th>
@@ -48,6 +51,9 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.ExerciseCategory!.Name)
             </td>
             <td>
@@ -60,6 +66,10 @@
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <form asp-action="EditToAdmin" asp-route-id="@item.Id" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-sm btn-warning" title="Mark as Admin">Make Admin</button>
+                    @Html.AntiForgeryToken()
+                </form>
             </td>
         </tr>
     }

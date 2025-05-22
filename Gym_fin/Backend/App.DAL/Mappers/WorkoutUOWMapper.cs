@@ -14,6 +14,7 @@ public class WorkoutUOWMapper : IMapper<App.DAL.DTO.Workout, App.Domain.EF.Worko
             Id = entity.Id,
             Name = entity.Name,
             Date = entity.Date,
+            CreatedBy = entity.CreatedBy,
             Exercises = entity.Exercises?.Select(e => new ExerInWorkout()
             {
                 Id = e.Id,

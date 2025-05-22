@@ -28,7 +28,7 @@ const makeWorkout = async () => {
   const chosenDate = new Date(date.value);
   const entity:IWorkout = {
     name: workoutName.value,
-    public: !!status,
+    public: !status,
     date: chosenDate.toISOString(),
     id: '',
     exercises: null,

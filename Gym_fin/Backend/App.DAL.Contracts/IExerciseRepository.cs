@@ -11,5 +11,6 @@ public interface IExerciseRepository : IBaseRepository<App.DAL.DTO.Exercise>, IE
 public interface IExerciseRepositoryCustom
 {
     public Task<IEnumerable<App.DAL.DTO.Exercise>> AllAsync(Guid? userId, Guid? categoryId);
+    public Task RemoveAsyncSafe(Guid id, Guid? userId);
 
 }

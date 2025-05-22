@@ -19,7 +19,12 @@ public static class InitialData
         Categories =
         [
             (Guid.NewGuid(), "Legs", "system", DateTimeOffset.UtcNow, null, null, null),
-            (Guid.NewGuid(), "Push and Chest", "system", DateTimeOffset.UtcNow, null, null, null),
+            (Guid.NewGuid(), "Chest", "system", DateTimeOffset.UtcNow, null, null, null),
+            (Guid.NewGuid(), "Push", "system", DateTimeOffset.UtcNow, null, null, null),
+            (Guid.NewGuid(), "Pull", "system", DateTimeOffset.UtcNow, null, null, null),
+            (Guid.NewGuid(), "Back", "system", DateTimeOffset.UtcNow, null, null, null),
+            (Guid.NewGuid(), "Core", "system", DateTimeOffset.UtcNow, null, null, null),
+            (Guid.NewGuid(), "Other", "system", DateTimeOffset.UtcNow, null, null, null),
         ];
 
 }

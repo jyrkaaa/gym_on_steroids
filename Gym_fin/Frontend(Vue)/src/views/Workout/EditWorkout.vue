@@ -11,13 +11,15 @@ import router from '@/router'
 import { SetinExercService } from '@/services/SetinExercService.ts'
 import type { ISetInExerc } from '@/domain/ISetInExerc.ts'
 import { format, parseISO } from 'date-fns'
+import { useAuthStore } from '@/stores/auth.ts'
 
 const requestIsOngoing = ref(false);
 const data = reactive<IResultObject<IWorkout[]>>({});
 const categoryData = reactive<IResultObject<IExerciseCategory[]>>({});
 const props = defineProps<{id: string}>();
+const store = useAuthStore();
 
-
+const userId = store.userId;
 const exerciseInput = ref('');
 const exerciseAddedId = computed(() => {
   for (const cat of categoryData.data || []) {
@@ -29,6 +31,7 @@ const exerciseAddedId = computed(() => {
 const fetchPageData = async (id: string) => {
   requestIsOngoing.value = true;
   try {
+    await store.refreshJwtIfNeeded();
     const workoutService = new WorkoutService();
     const categoryService = new ExerciseCategoryService();
     const workoutResult = await workoutService.findAsync(id);
@@ -40,7 +43,6 @@ const fetchPageData = async (id: string) => {
     //Exercise Select
     categoryData.data = categoryResult.data;
     categoryData.errors = categoryResult.errors;
-
     requestIsOngoing.value = false;
   } catch (error) {
     console.error(error)
@@ -54,6 +56,7 @@ onMounted(async () => {
 
 const addExercise = async (workoutId: string, exerciseAddedId : string) => {
   try {
+    await store.refreshJwtIfNeeded();
     const exerciseInWorkoutService = new ExerInWorkoutService();
     let entity : IExerInWorkout = {
       id: "",
@@ -61,7 +64,7 @@ const addExercise = async (workoutId: string, exerciseAddedId : string) => {
       workoutId: workoutId,
       desc: '',
       exercise: undefined,
-      Sets: undefined
+      sets: undefined
     };
     const exerciseResponse = await exerciseInWorkoutService.addAsync(entity);
     if (exerciseResponse.data) {
@@ -75,6 +78,7 @@ const addExercise = async (workoutId: string, exerciseAddedId : string) => {
 const deleteSet = async (setId: string) => {
   requestIsOngoing.value = true;
   try {
+    await store.refreshJwtIfNeeded();
     const setService = new SetinExercService();
     const addRepResponse = await setService.removeAsync(setId);
     await fetchPageData(props.id);
@@ -87,6 +91,7 @@ const deleteSet = async (setId: string) => {
 }
 const deleteExercise = async (exercId: string) => {
   try {
+    await store.refreshJwtIfNeeded();
     const exerciseInWorkoutService = new ExerInWorkoutService();
     await exerciseInWorkoutService.removeAsync(exercId);
 
@@ -105,6 +110,7 @@ const duplicateSet = async (exerciseinWorkoutId: string, dupeWeight: number, dup
         reps: dupeReps,
         exerInWorkoutId: exerciseinWorkoutId
       };
+      await store.refreshJwtIfNeeded();
       await setService.addAsync(entity);
       await fetchPageData(props.id);
     } catch (e) {
@@ -138,8 +144,9 @@ const editPublic = async (state: boolean) => {
       <div class="card shadow-sm">
         <div class="card-body">
           <h1 class="card-title text-center mb-4">{{ data.data.name }}</h1>
+          <h3 class="alert alert-info" v-if="data.data.createdBy != userId">Because you aren't the creator of this workout, you can't edit it.</h3>
           <h3><strong>Date:</strong> {{ format(parseISO(data.data.date), 'PPPpp') }}</h3>
-          <h3><strong>Public: {{ data.data.public }}</strong>  <button class="btn btn-outline-warning" @click.prevent="editPublic(data.data.public)">Change</button></h3>
+          <h3><strong>Public: {{ data.data.public }}</strong>  <button v-if="data.data.createdBy == userId" class="btn btn-outline-warning" @click.prevent="editPublic(data.data.public)">Change</button></h3>
           <h3 class="mt-4">Current Exercises</h3>
           <form method="post">
             <div class="row g-3">
@@ -149,8 +156,17 @@ const editPublic = async (state: boolean) => {
                 class="col-md-6"
               >
                 <div class="card border-dark mb-3">
-                  <div class="card-header bg-dark text-white">
-                    <strong>Exercise Name:</strong> {{ exercise.exercise.name }}
+                  <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                    <div>
+                      <strong>Exercise Name:</strong> {{ exercise.exercise.name }}
+                    </div>
+                    <RouterLink
+                      :to="`/statistics/${exercise.exercise.id}`"
+                      class="text-white"
+                      title="View Statistics"
+                    >
+                      <i class="bi bi-info-circle-fill"></i>
+                    </RouterLink>
                   </div>
                   <div class="card-body">
                     <ul class="list-group">
@@ -164,8 +180,8 @@ const editPublic = async (state: boolean) => {
                           <strong>Reps:</strong> {{ set.reps }}
                         </div>
                         <div>
-                          <button @click.prevent="deleteSet(set.id)" class="btn btn-danger btn-sm mr-1">Delete</button>
-                          <button @click.prevent="duplicateSet(exercise.id, set.weight, set.reps)" class="btn btn-primary btn-sm"
+                          <button v-if="data.data.createdBy == userId" @click.prevent="deleteSet(set.id)" class="btn btn-danger btn-sm mr-1">Delete</button>
+                          <button v-if="data.data.createdBy == userId" @click.prevent="duplicateSet(exercise.id, set.weight, set.reps)" class="btn btn-primary btn-sm"
                                   :value="`${set.id},${set.reps},${set.weight}`"
                                   name="copyRep">Duplicate</button>
                         </div>
@@ -173,18 +189,18 @@ const editPublic = async (state: boolean) => {
                     </ul>
                   </div>
                   <div class="card-footer d-flex justify-content-between">
-                    <RouterLink :to="`/workouts/${id}/${exercise.id}/${exercise.exercise.id}`">
+                    <RouterLink v-if="data.data.createdBy == userId" :to="`/workouts/${id}/${exercise.id}/${exercise.exercise.id}`">
                       <button class="btn btn-primary btn-sm">Add Rep</button>
                     </RouterLink>
-                    <button @click.prevent="deleteExercise(exercise.id)" :value="exercise.id" class="btn btn-danger btn-sm">Delete Exercise</button>
+                    <button v-if="data.data.createdBy == userId" @click.prevent="deleteExercise(exercise.id)" :value="exercise.id" class="btn btn-danger btn-sm">Delete Exercise</button>
                   </div>
                 </div>
               </div>
             </div>
           </form>
 
-          <h3 class="mt-4">Add an Exercise</h3>
-            <div class="mb-3">
+          <h3 v-if="data.data.createdBy == userId" class="mt-4">Add an Exercise</h3>
+            <div v-if="data.data.createdBy == userId" class="mb-3">
               <label for="exercise_id" class="form-label">Select Exercise:</label>
               <input list="exercises" class="form-select" name="exercise_id" id="exercise_id" required v-model="exerciseInput" placeholder="Choose Exercise">
               <datalist id="exercises">
@@ -202,7 +218,7 @@ const editPublic = async (state: boolean) => {
                 </template>
               </datalist>
             </div>
-            <button @click.prevent="addExercise(id, exerciseAddedId)" class="btn btn-dark">Add Exercise</button>
+            <button v-if="data.data.createdBy == userId" @click.prevent="addExercise(id, exerciseAddedId)" class="btn btn-dark">Add Exercise</button>
         </div>
       </div>
     </div>

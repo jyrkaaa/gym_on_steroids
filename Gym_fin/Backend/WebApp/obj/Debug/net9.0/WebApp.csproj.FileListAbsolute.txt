@@ -1389,8 +1389,8 @@
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/WebApp/bin/Debug/net9.0/Swashbuckle.AspNetCore.Annotations.dll
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/bin/Debug/net9.0/appsettings.Development.json
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/bin/Debug/net9.0/appsettings.json
-/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/bin/Debug/net9.0/WebApp.staticwebassets.endpoints.json
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/bin/Debug/net9.0/WebApp.staticwebassets.runtime.json
+/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/bin/Debug/net9.0/WebApp.staticwebassets.endpoints.json
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/bin/Debug/net9.0/WebApp
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/bin/Debug/net9.0/WebApp.deps.json
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/bin/Debug/net9.0/WebApp.runtimeconfig.json
@@ -1719,6 +1719,7 @@
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/bin/Debug/net9.0/Base.DAL.Contracts.pdb
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/bin/Debug/net9.0/Base.DAL.EF.pdb
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/bin/Debug/net9.0/Base.Domain.pdb
+/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/bin/Debug/net9.0/et/App.Resources.resources.dll
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/bin/Debug/net9.0/et/Base.Resources.resources.dll
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/obj/Debug/net9.0/WebApp.csproj.AssemblyReference.cache
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/obj/Debug/net9.0/WebApp.GeneratedMSBuildEditorConfig.editorconfig
@@ -1874,4 +1875,3 @@
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/obj/Debug/net9.0/WebApp.pdb
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/obj/Debug/net9.0/WebApp.genruntimeconfig.cache
 /Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/obj/Debug/net9.0/ref/WebApp.dll
-/Users/jurgenkuusik/RiderProjects/icd0024-24-25-s/Gym_fin/Backend/WebApp/bin/Debug/net9.0/et/App.Resources.resources.dll

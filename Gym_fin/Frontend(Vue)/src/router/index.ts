@@ -12,6 +12,7 @@ import AddSet from '@/views/Workout/AddSet.vue'
 import Statistics from '@/views/Statistics/Statistics.vue'
 import ShareWorkoutSearch from '@/views/Workout/ShareWorkoutSearch.vue'
 import AddUserWeight from '@/views/Statistics/AddUserWeight.vue'
+import ExerciseStatistics from '@/views/Statistics/ExerciseStatistics.vue'
 
 const routes = [
   { path: '/', name: 'Dashboard', component: Dashboard, meta: { requiresAuth: true } },
@@ -24,6 +25,7 @@ const routes = [
   { path: '/makeWorkout', name: 'MakeWorkout', component: MakeWorkout, meta: { requiresAuth: true } },
   { path: '/workouts/:id/:eiwId/:exercId', name: 'AddSet', component: AddSet, props: true, meta: { requiresAuth: true } },
   { path: '/statistics', name: 'Statistics', component: Statistics, meta: { requiresAuth: true } },
+  { path: '/statistics/:exerciseId', name: 'ExerciseStatistics', component: ExerciseStatistics, props: true, meta: { requiresAuth: true } },
   { path: '/shareWorkout', name: 'ShareWorkout', component: ShareWorkoutSearch, meta: { requiresAuth: true } },
   { path: '/addWeight', name: 'AddWeight', component: AddUserWeight, meta: { requiresAuth: true } },
 

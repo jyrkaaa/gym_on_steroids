@@ -47,6 +47,7 @@ public class ExerciseCategoryBLLMapper : IMapper<App.BLL.DTO.ExerciseCategory, A
                 ExerciseCategoryId = p.ExerciseCategoryId,
                 ExerGuideId = p.ExerGuideId,
                 ExerTargetId = p.ExerTargetId,
+                CreatedBy = p.CreatedBy
             }).ToList(),
         };
     }

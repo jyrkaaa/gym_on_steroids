@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, watch, onMounted } from 'vue'
+import { ref, reactive, watch, onMounted, computed } from 'vue'
 import dayjs from 'dayjs'
 
 import type { IResultObject } from '@/types.ts'
@@ -10,8 +10,18 @@ import { UserWeightService } from '@/services/UserWeightService.ts'
 import { WorkoutService } from '@/services/WorkoutService'
 
 import WeightChart from '@/components/WeightChart.vue'
+import { ExerciseService } from '@/services/ExerciseService.ts'
+import type { IExercise } from '@/domain/IExercise.ts'
+import { ExerciseCategoryService } from '@/services/ExerciseCategoryService.ts'
+import type { IExerciseCategory } from '@/domain/IExerciseCategory.ts'
+import router from '@/router'
 
+const exerciseInput = ref("");
 const data = reactive<IResultObject<IUserWeight[]>>({
+  data: [],
+  errors: undefined
+})
+const exerciseData = reactive<IResultObject<IExerciseCategory[]>>({
   data: [],
   errors: undefined
 })
@@ -51,17 +61,33 @@ const handleMonthChange = (pages: any[]) => {
   if (!isSameYearMonth(newDate, displayedMonth.value)) {
     displayedMonth.value = newDate
   }
+};
+
+const seeStats = async (exerciseAddedId: string) => {
+  await router.push(`/statistics/${exerciseAddedId}`)
 }
+
+const exerciseAddedId = computed(() => {
+  for (const cat of exerciseData.data || []) {
+    const match = cat.exercises.find(ex => ex.name === exerciseInput.value);
+    if (match) return match.id;
+  }
+  return '';
+});
 
 // Watch displayedMonth to fetch workouts whenever month changes
 watch(displayedMonth, fetchWorkouts, { immediate: true })
 
 // Fetch user weight data on mount
 const fetchPageData = async () => {
-  const userWeightService = new UserWeightService()
-  const userResponse = await userWeightService.getAllAsync()
-  data.data = userResponse.data
-  data.errors = userResponse.errors
+  const exerciseService = new ExerciseCategoryService();
+  const userService = new UserWeightService();
+  const exerResponse = await exerciseService.getAllAsync()
+  const userResponse = await userService.getAllAsync()
+  exerciseData.data = exerResponse.data
+  exerciseData.errors = exerResponse.errors
+  data.data = userResponse.data;
+  data.errors = userResponse.errors;
 }
 
 onMounted(async () => {
@@ -70,6 +96,28 @@ onMounted(async () => {
 </script>
 
 <template>
+  <h3 class="mt-4">See Exercise Stats</h3>
+  <div class="mb-3">
+    <label for="exercise_id" class="form-label">Select Exercise:</label>
+    <div class="d-flex flex-column">
+      <input list="exercises" class="form-control" name="exercise_id" id="exercise_id" required v-model="exerciseInput" placeholder="Choose Exercise">
+      <datalist id="exercises">
+        <option value="" disabled>Choose an exercise</option>
+        <template v-for="category in exerciseData.data" :key="category.name">
+          <option disabled class="category-option">{{ category.name }}</option>
+          <option
+            v-for="exercise in category.exercises"
+            :key="exercise.id"
+            :value="exercise.name"
+            :data-category="category.name"
+          >
+            {{ exercise.name }}
+          </option>
+        </template>
+      </datalist>
+      <button @click.prevent="seeStats(exerciseAddedId)" class="btn btn-dark">View Stats</button>
+    </div>
+  </div>
   <RouterLink to="/addWeight" class="btn btn-primary">Add Weight</RouterLink>
   <h2 v-if="data.data && data.data.length" class="mb-3">Weight Progress</h2>
   <div class="container">

@@ -21,6 +21,7 @@ public class ExerciseCategoryV1Mapper : IBLLMapper<App.DTO.v1.ExerciseCategory, 
                 ExerciseCategoryId = p.ExerciseCategoryId,
                 ExerGuideId = p.ExerGuideId,
                 ExerTargetId = p.ExerTargetId,
+                CreatedBy = p.CreatedBy
             }).ToList(),
         };
     }

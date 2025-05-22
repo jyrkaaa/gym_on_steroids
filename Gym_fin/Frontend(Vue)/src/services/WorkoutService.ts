@@ -43,4 +43,33 @@ export class WorkoutService extends BaseEntityService<IWorkout> {
       }
     }
   }
+  async getAllAsyncByExercise(exerciseId: string ): Promise<IResultObject<IWorkout[]>> {
+    try {
+      let options = {}
+      if (this.store.isAuthenticated) {
+        options = {
+          headers: {
+            Authorization: `Bearer ${this.store.jwt}`,
+          },
+        }
+      }
+
+      const response = await BaseService.axios.get<IWorkout[]>(this.basePath + "/all/" + exerciseId, options)
+
+      //console.log('getAll response', response)
+
+      if (response.status <= 300) {
+        return { data: response.data }
+      }
+
+      return {
+        errors: [(response.status.toString() + ' ' + response.statusText).trim()],
+      }
+    } catch (error) {
+      console.log('error: ', (error as Error).message)
+      return {
+        errors: [JSON.stringify(error)],
+      }
+    }
+  }
 }
